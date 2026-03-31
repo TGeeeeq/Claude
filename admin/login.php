@@ -1,19 +1,31 @@
 <?php
+/**
+ * Admin Login - with CSRF protection
+ */
+
 require_once '../config/database.php';
-require_once '../config/session.php';
+require_once '../config.php';
 
 $error = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Rate limiting for login attempts
+$ip = get_client_ip();
+if (!check_rate_limit("login_{$ip}", 5, 300)) { // 5 attempts per 5 minutes
+    $error = 'Příliš mnoho pokusů o přihlášení. Zkuste to znovu za 5 minut.';
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
-    
-    if (!empty($username) && !empty($password)) {
+    $csrf_token = $_POST['csrf_token'] ?? '';
+
+    // Verify CSRF token
+    if (!verify_csrf_token($csrf_token)) {
+        $error = 'Neplatný bezpečnostní token. Zkuste to znovu.';
+    } elseif (!empty($username) && !empty($password)) {
         $pdo = getDbConnection();
         $stmt = $pdo->prepare("SELECT id, username, password_hash FROM admins WHERE username = ?");
         $stmt->execute([$username]);
         $admin = $stmt->fetch();
-        
+
         if ($admin && password_verify($password, $admin['password_hash'])) {
             adminLogin($admin['id'], $admin['username']);
             header('Location: /admin/dashboard.php');
@@ -41,33 +53,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <img src="/images/logo.png" alt="Nech Mě Růst" class="login-logo">
                 <h1>Administrace</h1>
             </div>
-            
+
             <?php if ($error): ?>
                 <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
-            
+
             <form method="POST" class="login-form">
+                <?= csrf_field() ?>
+
                 <div class="form-group">
                     <label for="username">Uživatelské jméno</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        required 
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
                         autofocus
+                        autocomplete="username"
                     >
                 </div>
-                
+
                 <div class="form-group">
                     <label for="password">Heslo</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
                         required
+                        autocomplete="current-password"
                     >
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary btn-block">
                     Přihlásit se
                 </button>

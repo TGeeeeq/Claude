@@ -2,13 +2,18 @@ RewriteEngine On
 
 # Redirect HTTP to HTTPS (uncomment when SSL is active)
 # RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%$1 [L,R=301]
 
 # Prevent directory listing
 Options -Indexes
 
 # Protect sensitive files
-<FilesMatch "(\.htaccess|\.htpasswd|\.env|config\.php|database\.php)$">
+<FilesMatch "(\.htaccess|\.htpasswd|\.env|\.env\.|config\.php|database\.php|payment\.php|session\.php)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to .git and other hidden files
+<FilesMatch "^\.">
     Require all denied
 </FilesMatch>
 
@@ -19,27 +24,48 @@ Options -Indexes
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
 # Compress files
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
 </IfModule>
 
 # Security headers
 <IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
+    # Prevent XSS
     Header set X-XSS-Protection "1; mode=block"
+
+    # Prevent MIME sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Clickjacking protection
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # Referrer policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy - adjust based on your needs
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;"
+
+    # HSTS (uncomment when ready for HTTPS)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
 # PHP settings
 php_value upload_max_filesize 10M
 php_value post_max_size 10M
 php_value max_execution_time 300
+php_value display_errors 0
+php_value log_errors 1
 
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteCond %{HTTPS} off [NC]
+# Error document
 ErrorDocument 404 /404.html
+
+# Rewrite HTTP to HTTPS (for when SSL is active)
+# RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# RewriteCond %{HTTPS} off [NC]
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

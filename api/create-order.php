@@ -1,30 +1,42 @@
 <?php
 /**
- * Finální verze zpracování objednávky s e-mailovými notifikacemi
+ * Order creation API with security improvements
  */
+
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Origin: ' . ($_SERVER['HTTP_ORIGIN'] ?? ''));
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Credentials: true');
 
 require_once '../config/database.php';
-// Načtení PHPMailer přes autoload (pokud používáte Composer) nebo ručně
-require_once '../vendor/autoload.php';
-$config = require '../config.php';
+require_once '../config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// Handle preflight
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// Rate limiting - 5 orders per minute per IP
+$ip = get_client_ip();
+if (!check_rate_limit("order_{$ip}", 5, 60)) {
+    echo json_encode(['success' => false, 'error' => 'Příliš mnoho požadavků. Zkuste to znovu za minutu.']);
+    exit;
+}
+
+// Load vendor and config
+require_once '../vendor/autoload.php';
+$config = require '../config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Ochrana proti spamu
-if (isset($_SESSION['last_order_time']) && (time() - $_SESSION['last_order_time'] < 20)) {
-    echo json_encode(['success' => false, 'error' => 'Prosím, počkejte chvíli před další objednávkou.']);
-    exit;
-}
-
+// Get JSON input
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
@@ -37,8 +49,8 @@ function sanitize($input) {
     return htmlspecialchars(strip_tags(trim($input)), ENT_QUOTES, 'UTF-8');
 }
 
-// Validace polí
-$required = ['customer_name', 'customer_email', 'shipping_address', 'items', 'total_amount'];
+// Validate required fields
+$required = ['customer_name', 'customer_email', 'shipping_address', 'items'];
 foreach ($required as $field) {
     if (empty($data[$field])) {
         echo json_encode(['success' => false, 'error' => "Chybí pole: $field"]);
@@ -52,59 +64,85 @@ $customer_phone = sanitize($data['customer_phone'] ?? '');
 $shipping_addr  = sanitize($data['shipping_address']);
 $payment_method = sanitize($data['payment_method'] ?? 'bank_transfer');
 $notes          = sanitize($data['notes'] ?? '');
-$total_amount   = (float)$data['total_amount'];
 
 if (!$customer_email) {
     echo json_encode(['success' => false, 'error' => 'Neplatný e-mail.']);
     exit;
 }
 
+// Validate items array
+if (!is_array($data['items']) || empty($data['items'])) {
+    echo json_encode(['success' => false, 'error' => 'Neplatné položky objednávky.']);
+    exit;
+}
+
 try {
     $pdo = getDbConnection();
     $pdo->beginTransaction();
-    
+
     $orderNumber = 'NMR-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -6));
-    
+
+    // Calculate and validate total from database (never trust client-side prices)
+    $total_amount = 0;
+    $itemsListText = "";
+
+    $itemStmt = $pdo->prepare("
+        INSERT INTO order_items (order_id, product_id, product_name, quantity, unit_price, total_price)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ");
+
+    foreach ($data['items'] as $item) {
+        $product_id = (int)($item['product_id'] ?? 0);
+        $qty = max(0, (int)($item['quantity'] ?? 0));
+
+        if ($product_id > 0 && $qty > 0) {
+            // Get actual price from database
+            $prodStmt = $pdo->prepare("SELECT name, price FROM products WHERE id = ? AND is_active = 1");
+            $prodStmt->execute([$product_id]);
+            $product = $prodStmt->fetch();
+
+            if ($product) {
+                $u_price = (float)$product['price'];
+                $t_price = $qty * $u_price;
+                $p_name = sanitize($product['name']);
+
+                $itemStmt->execute([null, $product_id, $p_name, $qty, $u_price, $t_price]);
+                $itemsListText .= "- $p_name ($qty ks): " . number_format($t_price, 0, ',', ' ') . " Kč\n";
+                $total_amount += $t_price;
+            }
+        }
+    }
+
+    if ($total_amount <= 0) {
+        throw new Exception("Neplatná částka objednávky.");
+    }
+
+    // Insert order with calculated total
     $stmt = $pdo->prepare("
         INSERT INTO orders (
             order_number, customer_name, customer_email, customer_phone,
             shipping_address, total_amount, payment_method, notes, status, created_at
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
     ");
-    
+
     $stmt->execute([
         $orderNumber, $customer_name, $customer_email, $customer_phone,
         $shipping_addr, $total_amount, $payment_method, $notes
     ]);
-    
-    $orderId = $pdo->lastInsertId();
-    
-    $itemStmt = $pdo->prepare("
-        INSERT INTO order_items (order_id, product_id, product_name, quantity, unit_price, total_price)
-        VALUES (?, ?, ?, ?, ?, ?)
-    ");
-    
-    $itemsListText = "";
-    foreach ($data['items'] as $item) {
-        $p_name = sanitize($item['product_name'] ?? 'Produkt');
-        $qty = (int)($item['quantity'] ?? 0);
-        $u_price = (float)($item['unit_price'] ?? 0);
-        $t_price = $qty * $u_price;
 
-        if ($qty > 0) {
-            $itemStmt->execute([$orderId, (int)$item['product_id'], $p_name, $qty, $u_price, $t_price]);
-            $itemsListText .= "- $p_name ($qty ks): " . number_format($t_price, 0, ',', ' ') . " Kč\n";
-        }
-    }
-    
+    $orderId = $pdo->lastInsertId();
+
+    // Update order_items with correct order_id
+    $pdo->prepare("UPDATE order_items SET order_id = ? WHERE order_id IS NULL")
+        ->execute([$orderId]);
+
     $pdo->commit();
     $_SESSION['last_order_time'] = time();
 
-    // --- ODESÍLÁNÍ EMAILŮ ---
+    // Send confirmation emails
     $mail = new PHPMailer(true);
     $smtp = $config['smtp'];
 
-    // Nastavení serveru
     $mail->isSMTP();
     $mail->Host       = $smtp['Host'];
     $mail->SMTPAuth   = $smtp['SMTPAuth'];
@@ -114,7 +152,7 @@ try {
     $mail->Port       = $smtp['Port'];
     $mail->CharSet    = 'UTF-8';
 
-    // 1. Email zákazníkovi
+    // Customer email
     $mail->setFrom($smtp['FromEmail'], $smtp['FromName']);
     $mail->addAddress($customer_email, $customer_name);
     $mail->isHTML(true);
@@ -125,7 +163,7 @@ try {
         Číslo účtu: 2002645872 / 2010 (Fio banka, a.s.)<br>
         IBAN: CZ49 2010 2002 6400 0000 5872<br>
         SWIFT: FIOBCZPP<br>
-        <strong>Variabilní symbol: " . preg_replace('/[^0-9]/', '', $orderNumber) . "</strong> (nebo uveďte číslo objednávky do poznámky)</p>
+        <strong>Variabilní symbol: " . preg_replace('/[^0-9]/', '', $orderNumber) . "</strong></p>
     ";
 
     $mail->Body = "
@@ -139,10 +177,10 @@ try {
         <hr>
         <p>S úctou,<br>Tým Nech Mě Růst</p>
     ";
-    
+
     $mail->send();
 
-    // 2. Email administrátorovi
+    // Admin notification
     $mail->clearAddresses();
     $mail->addAddress('info@nechmerust.org');
     $mail->Subject = "NOVÁ OBJEDNÁVKA: $orderNumber";
@@ -158,11 +196,13 @@ try {
     ";
     $mail->send();
 
-    echo json_encode(['success' => true, 'order_number' => $orderNumber]);
-    
+    echo json_encode(['success' => true, 'order_number' => $orderNumber, 'total' => $total_amount]);
+
 } catch (Exception $e) {
-    if (isset($pdo) && $pdo->inTransaction()) { $pdo->rollBack(); }
-    error_log("Chyba objednávky/emailu: " . $e->getMessage());
-    echo json_encode(['success' => false, 'error' => 'Chyba při zpracování.']);
+    if (isset($pdo) && $pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+    error_log("Order error: " . $e->getMessage());
+    echo json_encode(['success' => false, 'error' => 'Chyba při zpracování objednávky.']);
 }
 ?>

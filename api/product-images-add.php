@@ -1,26 +1,39 @@
 <?php
+/**
+ * Add Product Image API - Admin only
+ */
+
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Origin: ' . ($_SERVER['HTTP_ORIGIN'] ?? ''));
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Credentials: true');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 require_once '../config/database.php';
 require_once '../config/session.php';
 
-// Check if admin is logged in
-if (!isset($_SESSION['admin_id'])) {
-    echo json_encode(['success' => false, 'error' => 'Unauthorized']);
-    exit;
-}
+// Use requireAdmin() which now has CSRF and IP checking
+requireAdmin();
 
 $pdo = getDbConnection();
 $data = json_decode(file_get_contents('php://input'), true);
 
-$productId = $data['product_id'] ?? '';
-$imageUrl = $data['image_url'] ?? '';
+$productId = isset($data['product_id']) ? (int)$data['product_id'] : 0;
+$imageUrl = isset($data['image_url']) ? filter_var($data['image_url'], FILTER_SANITIZE_URL) : '';
 
-if (empty($productId) || empty($imageUrl)) {
+if ($productId <= 0 || empty($imageUrl)) {
     echo json_encode(['success' => false, 'error' => 'Missing required fields']);
+    exit;
+}
+
+// Validate URL format
+if (!filter_var($imageUrl, FILTER_VALIDATE_URL)) {
+    echo json_encode(['success' => false, 'error' => 'Invalid image URL']);
     exit;
 }
 
@@ -30,20 +43,21 @@ try {
     $stmt->execute([$productId]);
     $result = $stmt->fetch();
     $nextOrder = ($result['max_order'] ?? -1) + 1;
-    
+
     // Insert new image
     $stmt = $pdo->prepare("
         INSERT INTO product_images (product_id, image_url, display_order)
         VALUES (?, ?, ?)
     ");
     $stmt->execute([$productId, $imageUrl, $nextOrder]);
-    
+
     echo json_encode([
         'success' => true,
         'message' => 'Image added successfully',
         'image_id' => $pdo->lastInsertId()
     ]);
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    error_log("Image add error: " . $e->getMessage());
+    echo json_encode(['success' => false, 'error' => 'Failed to add image']);
 }
 ?>

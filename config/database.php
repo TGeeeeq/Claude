@@ -1,35 +1,27 @@
 <?php
 /**
- * Konfigurace databáze.
- * Údaje jsou načítány z hlavního konfiguračního souboru config.php.
+ * Database configuration
+ * Credentials loaded from environment variables
  */
 
-// Načtení hlavní konfigurace
-$mainConfig = require __DIR__ . '/../config.php';
-$dbConfig = $mainConfig['database'];
+require_once __DIR__ . '/env.php';
 
-define('DB_HOST', $dbConfig['host']);
-define('DB_NAME', $dbConfig['name']);
-define('DB_USER', $dbConfig['user']);
-define('DB_PASS', $dbConfig['pass']);
-define('DB_CHARSET', 'utf8');
-
-function getDbConnection() {
-    static $pdo = null;
-    if ($pdo === null) {
-        try {
-            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
-            $options = [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES => false,
-            ];
-            $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
-        } catch (PDOException $e) {
-            error_log("Database connection failed: " . $e->getMessage());
-            die("Připojení k databázi selhalo.");
-        }
-    }
-    return $pdo;
-}
+return [
+    'smtp' => [
+        'Host'       => env('SMTP_HOST', 'smtp.forpsi.com'),
+        'SMTPAuth'   => true,
+        'Username'   => env('SMTP_USERNAME', 'info@nechmerust.org'),
+        'Password'   => env('SMTP_PASSWORD', ''),
+        'SMTPSecure' => 'tls',
+        'Port'       => (int)env('SMTP_PORT', 587),
+        'FromEmail'  => env('SMTP_FROM_EMAIL', 'info@nechmerust.org'),
+        'FromName'   => env('SMTP_FROM_NAME', 'Nech mě růst'),
+    ],
+    'database' => [
+        'host' => env('DB_HOST', 'localhost'),
+        'name' => env('DB_NAME', ''),
+        'user' => env('DB_USER', ''),
+        'pass' => env('DB_PASS', ''),
+    ]
+];
 ?>
