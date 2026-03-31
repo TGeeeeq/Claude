@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ZDE ZMĚŇTE OBSAH PRO KAŽDOU STRÁNKU -->
+    <meta name="description" content="Poznejte naše zvířecí obyvatele – příběhy, fotografie a zajímavosti o zvířatech, která žijí v projektu Nech mě růst.">
+    <title>Nech mě růst - Zvířecí obyvatelé</title>
+    <!-- KONEC ZMĚN -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J1EYDZ6G3W');
+</script>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="assets/logo.png" alt="Nech mě růst" class="logo"></a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
+                </li>
+<li class="nav-item">
+                    <a href="o-nas.html" class="nav-link" data-cs="O nás" data-en="About Us">O nás</a>
+                </li>
+<li class="nav-item">
+                    <a href="jak-se-zapojit.html" class="nav-link" data-cs="Jak se zapojit" data-en="Get involved">Jak se zapojit</a>
+                </li>
+<!-- Nový odkaz na Novinky -->
+                <li class="nav-item">
+                    <a href="novinky.html" class="nav-link" data-cs="Novinky" data-en="News">Novinky</a>
+                </li>
+                <li class="nav-item">
+                    <a href="zvireci-obyvatele.html" class="nav-link active" data-cs="Zvířecí obyvatelé" data-en="Animal Residents">Zvířecí obyvatelé</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="udalosti.html" class="nav-link" data-cs="Události" data-en="Events">Události</a>
+                </li>
+                <li class="nav-item">
+                    <a href="kontakt.html" class="nav-link" data-cs="Kontakt" data-en="Contact">Kontakt</a>
+                </li>
+<li class="nav-item">
+                    <a href="galerie.html" class="nav-link" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="obchod/index.html" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+                
+                <li class="nav-item language-switcher">
+                    <button id="lang-toggle" class="lang-btn">
+                        <span class="lang-text">EN</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="hamburger" aria-label="Otevřít/zavřít menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1 class="page-title" data-cs="Naši zvířecí obyvatelé" data-en="Our Animal Residents">Naši zvířecí obyvatelé</h1>
+            <p class="page-description" data-cs="Poznávejte naše zvířecí přátele, kteří našli na naší Louce svůj domov" data-en="Meet our animal friends who have found their home on our Meadow">
+                Poznávejte naše zvířecí přátele, kteří našli na naší Louce svůj domov
+            </p>
+        </div>
+        <div class="hero-image">
+            <img src="assets/animals-hero.webp" alt="Zvířata na louce" class="hero-bg">
+        </div>
+    </section>
+
+    <!-- Animals Grid -->
+    <section class="animals">
+        <div class="container">
+            <div class="animals-grid">
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/karel.webp" alt="Karel" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Karel</h3>
+                        <p class="animal-description" data-cs="Hravý osel s velkým srdcem a lehce kousavou povahou." data-en="A playful donkey with a large heart and a slightly biting nature.">
+                            Hravý osel s velkým srdcem a lehce kousavou povahou.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Karel" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/yakul.webp" alt="Yakul" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Yakul</h3>
+                        <p class="animal-description" data-cs="Rozverný mladý muflon který objevuje k čemu slouží rohy." data-en="A playful young mouflon discovering what its horns are for.">
+                            Rozverný mladý muflon který objevuje k čemu slouží rohy.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Yakul" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/avala.webp" alt="Avala" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Avala</h3>
+                        <p class="animal-description" data-cs="Mazlivá kráva, která miluje běhání po louce." data-en="A cuddly cow who loves running around the meadow.">
+                            Mazlivá kráva, která miluje běhání po louce.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Avala" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/princezna.webp" alt="Princezna" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Princezna</h3>
+                        <p class="animal-description" data-cs="Princezna je ušlechtilá černá kříženka divočáka, jejíž veškerá královská noblesa se při prvním zakručení v břiše okamžitě promění v nezastavitelnou slintavou potopu." data-en="Princess is a noble black wild boar crossbreed, whose royal nobility immediately turns into an unstoppable flood of drool at the first growl in her belly.">
+                            Princezna je ušlechtilá černá kříženka divočáka, jejíž veškerá královská noblesa se při prvním zakručení v břiše okamžitě promění v nezastavitelnou slintavou potopu.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Princezna" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/kveta.webp" alt="Květa" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Květa</h3>
+                        <p class="animal-description" data-cs="Klidná kravka co má ráda svůj klid a je věrnou společnicí Avalky." data-en="A calm cow who likes her peace and quiet and is Avalky's faithful companion.">
+                            Klidná kravka co má ráda svůj klid a je věrnou společnicí Avalky.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Květa" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/riky.webp" alt="Riky" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Riky</h3>
+                        <p class="animal-description" data-cs="Hravý pes, který hlídá celou Louky." data-en="A playful dog who guards the entire Meadow.">
+                            Hravý pes, který hlídá celou Louky.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Riky" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/flicek.webp" alt="Flíček" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Flíček</h3>
+                        <p class="animal-description" data-cs="Prasík co má rád drbání na bříšku." data-en="A pig who likes to have his belly rubbed.">
+                            Prasík co má rád drbání na bříšku.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Flíček" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/list.webp" alt="List" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">List-Stále se pohřešuje!</h3>
+                        <p class="animal-description" data-cs="Rozverné štěně, které moc rádo zkoumá a ochutnává." data-en="A playful puppy who loves to explore and taste everything.">
+                            Rozverné štěně, které moc rádo zkoumá a ochutnává.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=List" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/atila.webp" alt="Atila" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Atila</h3>
+                        <p class="animal-description" data-cs="Věrná kamarádka a velká milovnice jídla." data-en="A loyal friend and a great food lover.">
+                            Věrná kamarádka a velká milovnice jídla.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Atila" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/kesy.webp" alt="Kesy" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Kesy</h3>
+                        <p class="animal-description" data-cs="Vypadá jako obří chlupatý medvěd a má rozvážnost zenového mistra. Dává jasně najevo, že povely jsou pouze doporučení, kterými se bude řídit, až bude mít čas a náladu." data-en="She looks like a giant furry bear and has the prudence of a Zen master. She makes it clear that the commands are merely recommendations that she will follow when he has the time and the mood.">
+                            Vypadá jako obří chlupatý medvěd a má rozvážnost zenového mistra. Dává jasně najevo, že povely jsou pouze doporučení, kterými se bude řídit, až bude mít čas a náladu.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Kesy" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/pogo1.webp" alt="Pogo" class="animal-img"
+style="object-position: center top;">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Pogo</h3>
+                        <p class="animal-description" data-cs="Energická ovčí kamarádka." data-en="An energetic sheep friend.">
+                            Energická ovčí kamarádka.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Pogo" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/kulich.webp" alt="Kulich" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Kulich</h3>
+                        <p class="animal-description" data-cs="Milý a přátelský obyvatel naší Louky." data-en="Sweet and friendly resident of our Meadow.">
+                            Milý a přátelský obyvatel naší Louky.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Kulich" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/eda.webp" alt="Eduard" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Eduard</h3>
+                        <p class="animal-description" data-cs="Důstojný a vymazlený člen naší zvířecí rodiny." data-en="Dignified and calm member of our animal family.">
+                            Důstojný a klidný člen naší zvířecí rodiny.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Eduard" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/emil.webp" alt="Emil" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Emil</h3>
+                        <p class="animal-description" data-cs="Bezrohý(už) obyvatel Louky. Nehne se od Amálky." data-en="A hornless (already) resident of our Meadow. He doesn't move from Amálka.">
+                            Bezrohý(už) obyvatel Louky. Nehne se od Amálky.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Emil" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/amalka.webp" alt="Amálka" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Amálka</h3>
+                        <p class="animal-description" data-cs="Jemná a láskyplná obyvatelka naší Louky. Nehne se od Emila." data-en="Gentle and loving resident of our Meadow. He doesn't move from Emil.">
+                            Jemná a láskyplná obyvatelka naší Louky. Nehne se od Emila.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Amálka" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/konci.webp" alt="Končí" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Končí</h3>
+                        <p class="animal-description" data-cs="Zvědavý a aktivní člen naší komunity." data-en="Curious and active member of our community.">
+                            Zvědavý a aktivní člen naší komunity.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Končí" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/lucinka.webp" alt="Lucinka" class="animal-img"
+style="object-position: center top;">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Lucinka</h3>
+                        <p class="animal-description" data-cs="Veselá a přátelská ovčí babička." data-en="Cheerful and friendly sheep grandmother.">
+                            Veselá a přátelská ovčí babička.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Lucinka" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/anaya.webp" alt="Anaya" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Anaya</h3>
+                        <p class="animal-description" data-cs="Veselá a přátelská obyvatelka naší Louky." data-en="Cheerful and friendly resident of our Meadow.">
+                            Veselá a přátelská ovčí obyvatelka.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Anaya" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/roman.webp" alt="Roman" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Roman</h3>
+                        <p class="animal-description" data-cs="Nejsvalnatější kocour na celém světě." data-en="The most muscular cat in the whole world.">
+                            Nejsvalnatější kocour na celém světě.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Roman" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/denis.webp" alt="Denis" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Denis</h3>
+                        <p class="animal-description" data-cs="Velký průzkumník a velký mazel." data-en="A great explorer and a great glutton.">
+                            Velký průzkumník a velký mazel.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Denis" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/hanicka.webp" alt="Hanička" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Hanička</h3>
+                        <p class="animal-description" data-cs="Třínohá kočka samotářka." data-en="Tripod lonely cat.">
+                            Třínohá kočka samotářka.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Hanička" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/lotka.webp" alt="Lotka" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Lotka</h3>
+                        <p class="animal-description" data-cs="Kočka samotářka." data-en="Lonely cat.">
+                            Kočka samotářka.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Lotka" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/masa.webp" alt="Máša" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Máša</h3>
+                        <p class="animal-description" data-cs="Luční modrooká blondýna." data-en="A meadow blue-eyed blonde.">
+                            Luční modrooká blondýna.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Máša" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/patricie.webp" alt="Patricie" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Patricie</h3>
+                        <p class="animal-description" data-cs="Nejumňoukanější kočka na celém světě." data-en="The meekest cat in the whole world.">
+                            Nejumňoukanější kočka na celém světě.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Patricie" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                    
+                    <div class="animal-card">
+    <div class="animal-image">
+        <img src="assets/safir.webp" alt="Safír" class="animal-img">
+    </div>
+    <div class="animal-info">
+        <h3 class="animal-name">Safír</h3>
+        <p class="animal-description" data-cs="Nejchundelatější kocour na celém světě." data-en="The shaggiest cat in the whole world.">
+            Nejchundelatější kocour na celém světě.
+        </p>
+        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Safír" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+    </div>
+</div>
+
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/holoubci.webp" alt="Holoubci" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Holoubci</h3>
+                        <p class="animal-description" data-cs="Krásní ptáci, kteří přinášejí klid a harmonii." data-en="Beautiful birds that bring peace and harmony.">
+                            Krásní ptáci, kteří přinášejí klid a harmonii.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Holoubci" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+<div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/kralici.webp" alt="Králíci" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Králíci</h3>
+                        <p class="animal-description" data-cs="Králíčci co si užívají svobody." data-en="Bunnies enjoying their freedom.">
+                            Králíčci co si užívají svobody.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Kralici" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-card">
+                    <div class="animal-image">
+                        <img src="assets/pipinky.webp" alt="Pipinky" class="animal-img">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="animal-name">Pipinky</h3>
+                        <p class="animal-description" data-cs="Malí a roztomilí obyvatelé naší Louky." data-en="Small and cute residents of our Meadow.">
+                            Malí a roztomilí obyvatelé naší Louky.
+                        </p>
+                        <div class="animal-actions">
+                            <a href="virtualni-adopce.html" class="adopt-btn" data-cs="Adoptovat virtuálně" data-en="Adopt Virtually">Adoptovat virtuálně</a>
+                            <a href="galerie.html?animal=Pipinky" class="gallery-btn" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+ 
+    <!-- Social Media -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title" data-cs="Sledujte nás" data-en="Follow Us">Sledujte nás</h2>
+            <div class="social-media large">
+                <a href="https://www.instagram.com/nech_me_rust" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="mailto:info@nechmerust.org" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+
+            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

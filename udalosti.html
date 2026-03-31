@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sledujte aktuální i plánované události projektu Nech mě růst. Přijďte na workshopy, přednášky a komunitní akce zaměřené na osobní rozvoj, ekologii a udržitelnost.">
+    <title>Nech mě růst - Události a akce</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J1EYDZ6G3W');
+</script>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="assets/logo.png" alt="Nech mě růst" class="logo"></a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a href="o-nas.html" class="nav-link" data-cs="O nás" data-en="About Us">O nás</a>
+                </li>
+                <li class="nav-item">
+                    <a href="jak-se-zapojit.html" class="nav-link" data-cs="Jak se zapojit" data-en="Get involved">Jak se zapojit</a>
+                </li>
+                <li class="nav-item">
+                    <a href="novinky.html" class="nav-link" data-cs="Novinky" data-en="News">Novinky</a>
+                </li>
+                <li class="nav-item">
+                    <a href="zvireci-obyvatele.html" class="nav-link" data-cs="Zvířecí obyvatelé" data-en="Animal Residents">Zvířecí obyvatelé</a>
+                </li>
+                <li class="nav-item">
+                    <a href="udalosti.html" class="nav-link active" data-cs="Události" data-en="Events">Události</a>
+                </li>
+                <li class="nav-item">
+                    <a href="kontakt.html" class="nav-link" data-cs="Kontakt" data-en="Contact">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a href="galerie.html" class="nav-link" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="obchod/index.html" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+                <li class="nav-item language-switcher">
+                    <button id="lang-toggle" class="lang-btn">
+                        <span class="lang-text">EN</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="hamburger" aria-label="Otevřít/zavřít menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero events-hero">
+        <div class="hero-content">
+            <h1 class="page-title" data-cs="Události" data-en="Events">Události</h1>
+            <p class="page-description" data-cs="Zúčastněte se některé z událostí a poznejte život na Louce" data-en="Attend one of our events and experience our way of life">Zúčastněte se některé z událostí a poznejte život na Louce</p>
+        </div>
+        <div class="hero-image">
+            <img data-src="assets/hero-image.webp" alt="Události" class="hero-bg" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2 class="section-title" data-cs="Nadcházející události" data-en="Upcoming Events">Nadcházející události</h2>
+
+            <div class="events-grid" id="events-list">
+
+                <!-- KARTA 1: Společná procházka 11. dubna -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">11.</div>
+                        <div class="event-month" data-cs="Duben" data-en="April">Duben</div>
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title" data-cs="Společná procházka" data-en="Walking with animals.">Toulky se zvířecí karavanou</h3>
+                        <p class="event-time">
+                            <i class="fas fa-clock"></i>
+                            <span>10:30</span>
+                        </p>
+                        <p class="event-description"
+                           data-cs="Srdečně vás zveme na společné poslední 🌱Jarní toulky okolní krajinou naší milované Louky ve společnosti zvířecí karavany. ☕️Bříška nám zahřeje teplý nápoj a výborná buchta. 
+
+sejdeme se v 10.30 na naší Louce a společně vyrazíme v 11.00 s celou lidskou i zvířecí bandou. 
+
+💸 Doporučený finanční příspěvek za účast je 490 korun.
+nicméně pokud máte zrovna hojnost, můžete přispět více a naopak v méně příznivé situaci darovat méně. 🙏
+
+🚗 Pokud cestujete autem, můžete jej zaparkovat na adrese Nová Ves u Leštiny 32 tak, aby nepřekážely ve vjezdech na louky a pole.
+Vlakem jeďte do zastávky Vlkaneč nebo Nová Ves u Leštiny.
+🐾 pejsky nechte raději doma, prosím.
+Můžete přivézt i vaše rostlinné dobroty na ochutnání a než vyrazíme, pěkně se občerstvíme. 
+Pro zvířátka můžete dovézt ovoce, zeleninu 🍏🥕🥬
+bude i možnost zakoupit si naše výrobky a podpořit tak projekt Nech mě růst.🌿"
+                           data-en="We cordially invite you to a joint 🌱Spring stroll through the surrounding countryside of our beloved Louka in the company of an animal caravan. 🐾🐮
+
+☕️A warm drink and a delicious bun will warm our bellies. 
+
+we will meet at 10.30 am at our Louka and set off together at 11.00 am with the whole human and animal gang. 
+
+💸 The recommended financial contribution for participation is 490 CZK.
+
+Take the train to the Vlkaneč or Nová Ves u Leštiny stop.
+
+🐾 Please leave your dogs at home.
+
+You can also bring your plant-based delicacies to taste and before we set off, we will have a nice refreshment. 
+
+You can bring fruit and vegetables for the animals 🍏🥕🥬
+
+there will also be an opportunity to purchase our products and support the Let Me Grow project.🌿">
+                            Společná procházka se zvířaty po okolních lesích a loukách
+                        </p>
+                        <a href="https://facebook.com/events/s/spolecna-prochazka-se-zviraty/941033611836623/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="register-btn facebook-btn">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                    </div>
+                </div>
+                <!-- KONEC KARTY 1 -->
+
+                <!-- KARTA 2: Toulky se zvířaty 24. dubna -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">24.</div>
+                        <div class="event-month" data-cs="Duben" data-en="April">Duben</div>
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title" data-cs="Toulky se zvířaty" data-en="Wanderings with animals">Toulky se zvířaty</h3>
+                        <p class="event-time">
+                            <i class="fas fa-clock"></i>
+                            <span>Pátek - Neděle</span>
+                        </p>
+                        <p class="event-description"
+                           data-cs="Dvoudenní putování středočeskou krajinou ve společnosti psů, osla, muflona a dalších zvířecích přátel."
+                           data-en="A two-day journey through the Central Bohemian landscape in the company of dogs, a donkey, a mouflon, and other animal friends.">
+                            Dvoudenní putování středočeskou krajinou ve společnosti psů, osla, muflona a dalších zvířecích přátel.
+                        </p>
+                        <div class="event-buttons" style="display: flex; flex-direction: column; gap: 10px;">
+                            <a href="putovani-se-zviraty.html" class="register-btn" style="width: 100%;">
+                                <i class="fas fa-info-circle"></i> Více informací a registrace
+                            </a>
+                            <a href="https://facebook.com/events/s/toulky-se-zviraty/1397605111685523/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="register-btn facebook-btn" style="width: 100%;">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- KONEC KARTY 2 -->
+
+                <!-- KARTA 3: Jarní Loukáda 9. května -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">9.</div>
+                        <div class="event-month" data-cs="Květen" data-en="May">Květen</div>
+                    </div>
+                    <div class="event-info">
+                        <h3 class="event-title" data-cs="Jarní Loukáda" data-en="Spring Loukáda">Jarní Loukáda</h3>
+                        <p class="event-time">
+                            <i class="fas fa-clock"></i>
+                            <span>9:30 – Sobota - Neděle</span>
+                        </p>
+                        <p class="event-description"
+                           data-cs="Krásný den přátelé! 🌞
+
+Paní Zima odchází a Louka se probouzí – a to znamená jediné: čas na **Loukádu** alias *Prijeď makat, Louka ti poděkuje!* 🙏😅
+
+Čeká nás stavba nového výběhu pro Princeznu (prasinka 🐽), úklid a opravy po zimě, práce na zahradách a spousta dalšího. Práce je víc než dost, každý si přijde na své! 😄
+
+🗓️ **Praktické info:**
+- **Parkování:** Nová Ves u Leštiny 32
+- **Vlakem:** stanice Vlkaneč nebo Nová Ves u Leštiny
+- **Jídlo** na celý víkend zajištěno (vše rostlinné) – kdo chce, může přivézt něco dobrého k ochutnání 🌱
+- **Spaní:** stan, hamaka nebo pod širým nebem (nebe máme, zbytek vlastní 😅)
+- Večery u ohýnku, sdílení, zpívání…
+
+📩 Info a přihlášení: IG **@nechmerust** nebo **info@nechmerust.org**
+
+Moc se těším! 🫵
+
+*P.S. Mazlení zvířátek povinné, ovozelenina vítána! 🐑🐐🫏🐕🐂*"
+                           data-en="Have a nice day friends! 🌞
+
+Mrs. Winter is leaving and Louka is waking up – and that means only one thing: time for **Loukáda** aka *Come work, Louka will thank you!* 🙏😅
+
+We have a new enclosure for Princess (the pig 🐽), cleaning and repairs after the winter, gardening and much more to do. There is more than enough work, everyone will find their own!  😄
+
+🗓️ **Practical info:**
+- **Parking:** Nová Ves u Leštiny 32
+- **By train:** Vlkaneč or Nová Ves u Leštiny station
+- **Food** provided for the whole weekend (all plant-based) – if you want, you can bring something good to taste 🌱
+- **Sleeping:** tent, hammock or under the open sky (we have the sky, the rest is ours 😅)
+- Evenings by the fire, sharing, singing…
+
+📩 Info and registration: IG **@nechmerust** or **info@nechmerust.org**
+
+I'm really looking forward to it! 🫵
+
+*P.S. Petting the animals is mandatory, fruits or vegetables are welcome! 🐑🐐🫏🐕🐂*">
+                            Jarní brigáda a společné setkání na Louce.
+                        </p>
+                        <div class="event-buttons" style="display: flex; flex-direction: column; gap: 10px;">
+                            
+                            <a href="https://facebook.com/events/s/jarni-loukada/1564587511282588/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="register-btn facebook-btn" style="width: 100%;">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- KONEC KARTY 3 -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title" data-cs="Sledujte nás" data-en="Follow Us">Sledujte nás</h2>
+            <div class="social-media large">
+                <a href="https://www.instagram.com/nech_me_rust" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="mailto:info@nechmerust.org" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal HTML -->
+    <div id="registrationModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegistrationModal()">&times;</span>
+            <h2 style="color: #2d5a3d; margin-top: 0;">Registrace na událost</h2>
+            <div id="eventDetails" class="event-details"></div>
+            <form id="registrationForm" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label for="name">Jméno a příjmení *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Poznámka/Dotaz (nepovinné)</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <input type="hidden" id="eventTitleInput" name="event_title">
+                <button type="submit" class="submit-btn register-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Odeslat registraci
+                </button>
+            </form>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <p>Registrace byla úspěšně odeslána. Potvrzovací email byl zaslán na vaši adresu.</p>
+            </div>
+            <div id="errorMessage" class="success-message error" style="display: none;">
+                <i class="fas fa-times-circle"></i>
+                <p id="errorMessageText">Při odesílání registrace došlo k chybě. Zkuste to prosím znovu.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+
+    <script>
+        const modal = document.getElementById('registrationModal');
+        const eventTitleInput = document.getElementById('eventTitleInput');
+        const eventDetails = document.getElementById('eventDetails');
+        const registrationForm = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const toast = document.getElementById('confirmationToast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function openRegistrationModal(button) {
+            const eventTitle = button.getAttribute('data-event-title');
+
+            const eventCard = button.closest('.event-card');
+            const dateElement = eventCard.querySelector('.event-date');
+            const timeElement = eventCard.querySelector('.event-time span');
+            const descriptionElement = eventCard.querySelector('.event-description');
+
+            const day = dateElement.querySelector('.event-day').textContent;
+            const month = dateElement.querySelector('.event-month').textContent;
+            const time = timeElement ? timeElement.textContent : 'Není upřesněno';
+            const description = descriptionElement ? descriptionElement.textContent.trim() : '';
+
+            eventDetails.innerHTML = `
+                <strong>Událost:</strong> ${eventTitle}<br>
+                <strong>Datum:</strong> ${day}. ${month}<br>
+                <strong>Čas:</strong> ${time}<br>
+                <strong>Popis:</strong> ${description}
+            `;
+
+            eventTitleInput.value = eventTitle;
+
+            registrationForm.reset();
+            registrationForm.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat registraci';
+
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                document.querySelector('.modal-content').style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        function closeRegistrationModal() {
+            modal.style.opacity = '0';
+            document.querySelector('.modal-content').style.transform = 'translateY(-50px)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeRegistrationModal();
+            }
+        }
+
+        function showToast(message, isError = false) {
+            toastMessage.textContent = message;
+            toast.className = 'confirmation-toast show ' + (isError ? 'error' : 'success');
+            toast.querySelector('i').className = 'fas ' + (isError ? 'fa-times-circle' : 'fa-check-circle');
+
+            setTimeout(() => {
+                toast.className = 'confirmation-toast';
+            }, 5000);
+        }
+
+        async function handleRegistration(event) {
+            event.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Odesílám...';
+
+            const formData = new FormData(registrationForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/nechmerust_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    registrationForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    showToast('Registrace byla úspěšně odeslána!');
+                } else {
+                    throw new Error(result.message || 'Neznámá chyba');
+                }
+            } catch (err) {
+                errorMessage.style.display = 'block';
+                document.getElementById('errorMessageText').textContent = err.message || 'Při odesílání došlo k chybě.';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Odeslat registraci';
+            }
+        }
+    </script>
+</body>
+</html>

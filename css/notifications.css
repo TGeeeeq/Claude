@@ -1,0 +1,38 @@
+/* Notification Styles */
+
+.add-to-cart-notification {
+    position: fixed;
+    bottom: -100px;
+    right: 20px;
+    background: #2d5a3d;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    z-index: 2000;
+    transition: bottom 0.3s ease;
+}
+
+.add-to-cart-notification.show {
+    bottom: 20px;
+}
+
+.add-to-cart-notification i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .add-to-cart-notification {
+        right: 10px;
+        left: 10px;
+        bottom: -100px;
+    }
+    
+    .add-to-cart-notification.show {
+        bottom: 10px;
+    }
+}

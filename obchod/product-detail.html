@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail produktu - Nech mě růst">
+    <title>Detail produktu - Nech mě růst</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/shop.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-J1EYDZ6G3W');
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo.png" alt="Nech mě růst" class="logo">
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../o-nas.html" class="nav-link" data-cs="O nás" data-en="About Us">O nás</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../jak-se-zapojit.html" class="nav-link" data-cs="Jak se zapojit" data-en="Get involved">Jak se zapojit</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../novinky.html" class="nav-link" data-cs="Novinky" data-en="News">Novinky</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../zvireci-obyvatele.html" class="nav-link" data-cs="Zvířecí obyvatelé" data-en="Animal Residents">Zvířecí obyvatelé</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../udalosti.html" class="nav-link" data-cs="Události" data-en="Events">Události</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../kontakt.html" class="nav-link" data-cs="Kontakt" data-en="Contact">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../galerie.html" class="nav-link" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+
+                <!-- Integrovaný Košík -->
+                <li class="nav-item">
+                    <button class="nav-link cart-nav-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span id="cartCount" class="cart-badge">0</span>
+                    </button>
+                </li>
+                
+                <li class="nav-item language-switcher">
+                    <button id="lang-toggle" class="lang-btn">
+                        <span class="lang-text">EN</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="hamburger" aria-label="Otevřít/zavřít menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Zpět na obchod
+            </a>
+            
+            <div id="productDetailContainer" class="product-detail-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p data-cs="Načítání produktu..." data-en="Loading product...">Načítání produktu...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2 data-cs="Nákupní košík" data-en="Shopping Cart">Nákupní košík</h2>
+            <button class="close-btn" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-content" id="cartContent">
+            <div class="empty-cart">
+                <p data-cs="Váš košík je prázdný" data-en="Your cart is empty">Váš košík je prázdný</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-cs="Celkem:" data-en="Total:">Celkem:</span>
+                <strong id="cartTotal">0 Kč</strong>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="goToCheckout()" data-cs="Pokračovat k pokladně" data-en="Proceed to Checkout">
+                Pokračovat k pokladně
+            </button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script src="../js/shop.js"></script>
+    <script src="../js/product-detail.js"></script>
+</body>
+</html>

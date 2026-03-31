@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ZDE ZMĚŇTE OBSAH PRO KAŽDOU STRÁNKU -->
+    <meta name="description" content="Spojte se s námi, najděte adresu a informace o návštěvách.">
+    <title>Nech mě růst - Kontakt</title>
+    <!-- KONEC ZMĚN -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J1EYDZ6G3W');
+</script>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="assets/logo.png" alt="Nech mě růst" class="logo"></a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
+                </li>
+<li class="nav-item">
+                    <a href="o-nas.html" class="nav-link" data-cs="O nás" data-en="About Us">O nás</a>
+                </li>
+<li class="nav-item">
+                    <a href="jak-se-zapojit.html" class="nav-link" data-cs="Jak se zapojit" data-en="Get involved">Jak se zapojit</a>
+                </li>
+<!-- Nový odkaz na Novinky -->
+                <li class="nav-item">
+                    <a href="novinky.html" class="nav-link" data-cs="Novinky" data-en="News">Novinky</a>
+                </li>
+                <li class="nav-item">
+                    <a href="zvireci-obyvatele.html" class="nav-link" data-cs="Zvířecí obyvatelé" data-en="Animal Residents">Zvířecí obyvatelé</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="udalosti.html" class="nav-link" data-cs="Události" data-en="Events">Události</a>
+                </li>
+                <li class="nav-item">
+                    <a href="kontakt.html" class="nav-link active" data-cs="Kontakt" data-en="Contact">Kontakt</a>
+                </li>
+<li class="nav-item">
+                    <a href="galerie.html" class="nav-link" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="obchod/index.html" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+
+                
+                <li class="nav-item language-switcher">
+                    <button id="lang-toggle" class="lang-btn">
+                        <span class="lang-text">EN</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="hamburger" aria-label="Otevřít/zavřít menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="page-hero contact-hero">
+        <div class="hero-content">
+            <h1 class="page-title" data-cs="Kontakt" data-en="Contact">Kontakt</h1>
+            <p class="page-description" data-cs="Spojte se s námi a navštivte naši Louku" data-en="Get in touch with us and visit our Meadow">
+                Spojte se s námi a navštivte naši Louku
+            </p>
+        </div>
+        <div class="hero-image">
+            <img data-src="assets/contact-hero.webp" alt="Kontakt" class="hero-bg" loading="lazy">
+        </div>
+    </section>
+<!-- Contact Info -->
+<section class="contact-details">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 data-cs="Adresa" data-en="Address">Adresa</h3>
+                <a href="https://mapy.com/s/nozazohuta" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <p>Nová ves u Leštiny 32<br>582 82 Česká Republika</p>
+                </a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 data-cs="Email" data-en="Email">Email</h3>
+                <p><a href="mailto:info@nechmerust.org">info@nechmerust.org</a></p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 data-cs="Návštěvy" data-en="Visits">Návštěvy</h3>
+                <p data-cs="Po domluvě. Kontaktujte nás 48h předem" data-en="By appointment. Contact us 48h in advance">Po domluvě. Kontaktujte nás 48h předem</p>
+            </div>           
+          
+                
+         </div>   
+        </div>
+    </section>
+
+    <!-- Visit Info -->
+    <section class="visit-info">
+        <div class="container">
+            <div class="visit-content">
+                <div class="visit-text">
+                    <h2 data-cs="Plánujete návštěvu?" data-en="Planning a Visit?">Plánujete návštěvu?</h2>
+                    <p data-cs="Rádi vítáme návštěvníky na naší Louce! Kontaktujte nás prosím alespoň 48 hodin předem a domluvte si termín návštěvy. Pomůže nám to zajistit, aby se zvířata cítila dobře a abychom vám mohli poskytnout co nejlepší zážitek." data-en="We welcome visitors to our Meadow! Please contact us at least 48 hours in advance to arrange a visit. This will help us ensure that the animals feel comfortable and that we can provide you with the best possible experience.">
+                        Rádi vítáme návštěvníky na naší Louce! Kontaktujte nás prosím alespoň 48 hodin předem a domluvte si termín návštěvy. Pomůže nám to zajistit, aby se zvířata cítila dobře a abychom vám mohli poskytnout co nejlepší zážitek.
+                    </p>
+                    
+                    <div class="visit-guidelines">
+                        <h3 data-cs="Co očekávat při návštěvě:" data-en="What to Expect During Your Visit:">Co očekávat při návštěvě:</h3>
+                        <ul>
+                            <li data-cs="Prohlídka celé Louky a seznámení se zvířaty" data-en="Tour of the entire Meadow and meeting the animals">Prohlídka celé Louky a seznámení se zvířaty</li>
+                            <li data-cs="Možnost krmení a mazlení se zvířaty" data-en="Opportunity to feed and pet the animals">Možnost krmení a mazlení se zvířaty</li>
+                            <li data-cs="Vyprávění o historii každého zvířete" data-en="Stories about the history of each animal">Vyprávění o historii každého zvířete</li>
+                            <li data-cs="Informace o našem způsobu života a filozofii" data-en="Information about our way of life and philosophy">Informace o našem způsobu života a filozofii</li>
+                            <li data-cs="Možnost zakoupení místních produktů" data-en="Opportunity to purchase local products">Možnost zakoupení místních produktů</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="mailto:info@nechmerust.org?subject=Zájem o návštěvu Louky" class="contact-btn" data-cs="Domluvit návštěvu" data-en="Arrange a Visit">Domluvit návštěvu</a>
+                </div>
+                <div class="visit-image">
+                    <img data-src="assets/visit-image.webp" alt="Návštěva Louky" class="visit-img" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Newsletter Signup Widget -->
+<!-- Tento element můžete vložit na libovolnou stránku webu -->
+
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-box">
+            <div class="newsletter-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="newsletter-content">
+                <h3 class="newsletter-title">Zůstaňte v obraze 📬</h3>
+                <p class="newsletter-description">
+                    Přihlaste se k odběru našich novinek a buďte první, kdo se dozví o aktuálním dění na Louce, 
+                    nových příbězích našich zvířat a plánovaných událostech.
+                </p>
+            </div>
+            <form id="newsletter-form" class="newsletter-form">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="newsletter-name" 
+                        name="name" 
+                        placeholder="Vaše jméno" 
+                        required
+                        class="newsletter-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        id="newsletter-email" 
+                        name="email" 
+                        placeholder="Váš email" 
+                        required
+                        class="newsletter-input"
+                    >
+                </div>
+                <button type="submit" class="newsletter-submit-btn">
+                    <span class="btn-text">Přihlásit se k odběru</span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Odesílám...
+                    </span>
+                </button>
+                <p class="newsletter-privacy">
+                    <small>
+                        <i class="fas fa-lock"></i> 
+                        Vaše údaje jsou v bezpečí. Přečtěte si naše 
+                        <a href="gdpr.html" target="_blank">zásady ochrany osobních údajů</a>.
+                    </small>
+                </p>
+            </form>
+            <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+        </div>
+    </div>
+</section>
+   
+    <!-- Social Media -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title" data-cs="Sledujte nás" data-en="Follow Us">Sledujte nás</h2>
+            <div class="social-media large">
+                <a href="https://www.instagram.com/nech_me_rust" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="mailto:info@nechmerust.org" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- Styly pro Newsletter Widget -->
+<style>
+.newsletter-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(45, 90, 61, 0.05), rgba(74, 124, 89, 0.05));
+}
+
+.newsletter-box {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 50px 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    border: 2px solid #f0e892;
+}
+
+.newsletter-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2d5a3d, #4a7c59);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    box-shadow: 0 4px 15px rgba(45, 90, 61, 0.3);
+}
+
+.newsletter-icon i {
+    font-size: 2.2rem;
+    color: #ffffff;
+}
+
+.newsletter-content {
+    margin-bottom: 35px;
+}
+
+.newsletter-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d5a3d;
+    margin-bottom: 15px;
+}
+
+.newsletter-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #555555;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.newsletter-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 30px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: #2d5a3d;
+    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+}
+
+.newsletter-submit-btn {
+    width: 100%;
+    padding: 16px 30px;
+    background: linear-gradient(135deg, #2d5a3d, #4a7c59);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(45, 90, 61, 0.3);
+    font-family: 'Inter', sans-serif;
+    margin-top: 10px;
+}
+
+.newsletter-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 90, 61, 0.4);
+}
+
+.newsletter-submit-btn:active {
+    transform: translateY(0);
+}
+
+.newsletter-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.newsletter-privacy {
+    margin-top: 15px;
+    color: #777777;
+    font-size: 13px;
+}
+
+.newsletter-privacy a {
+    color: #2d5a3d;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.newsletter-privacy a:hover {
+    text-decoration: underline;
+}
+
+.newsletter-message {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.newsletter-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.newsletter-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .newsletter-section {
+        padding: 60px 0;
+    }
+    
+    .newsletter-box {
+        padding: 40px 25px;
+        border-radius: 10px;
+    }
+    
+    .newsletter-title {
+        font-size: 1.6rem;
+    }
+    
+    .newsletter-description {
+        font-size: 0.95rem;
+    }
+    
+    .newsletter-input {
+        padding: 13px 18px;
+        font-size: 15px;
+    }
+    
+    .newsletter-submit-btn {
+        padding: 14px 25px;
+        font-size: 16px;
+    }
+}
+</style>
+
+<!-- JavaScript pro Newsletter Form -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    const messageDiv = document.getElementById('newsletter-message');
+    const submitBtn = newsletterForm.querySelector('.newsletter-submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+
+    newsletterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Získání hodnot z formuláře
+        const name = document.getElementById('newsletter-name').value.trim();
+        const email = document.getElementById('newsletter-email').value.trim();
+        
+        // Validace
+        if (!name || !email) {
+            showMessage('Prosím vyplňte všechna pole.', 'error');
+            return;
+        }
+        
+        // Validace emailu
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Prosím zadejte platnou emailovou adresu.', 'error');
+            return;
+        }
+        
+        // Zobrazení loading stavu
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        messageDiv.style.display = 'none';
+        
+        try {
+            // Odeslání dat na server
+            // Nový kód v kontakt.html
+const response = await fetch('newsletter_signup_api.php', {
+
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    action: 'subscribe'
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                showMessage('Děkujeme! Byli jste úspěšně přihlášeni k odběru novinek. 🎉', 'success');
+                newsletterForm.reset();
+            } else {
+                showMessage(data.message || 'Došlo k chybě při přihlášení. Zkuste to prosím později.', 'error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showMessage('Došlo k chybě při odesílání. Zkuste to prosím později.', 'error');
+        } finally {
+            // Obnovení tlačítka
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+        }
+    });
+    
+    function showMessage(message, type) {
+        messageDiv.textContent = message;
+        messageDiv.className = 'newsletter-message ' + type;
+        messageDiv.style.display = 'block';
+        
+        // Automatické skrytí zprávy po 5 sekundách
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
+    }
+});
+</script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+
+            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokladna - Nech mě růst</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/shop.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo.png" alt="Nech mě růst" class="logo">
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="checkout-page" style="margin-top: 100px; padding: 4rem 0;">
+        <div class="container">
+            <div class="checkout-header" style="text-align: center; margin-bottom: 3rem;">
+                <h1 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem;">Dokončení objednávky</h1>
+                <div class="checkout-steps" style="display: flex; justify-content: center; gap: 2rem; color: var(--text-color-light);">
+                    <div class="step active" style="color: var(--primary-color); font-weight: 700;">1. Kontaktní údaje</div>
+                    <div class="step">2. Platba</div>
+                    <div class="step">3. Hotovo</div>
+                </div>
+            </div>
+
+            <div class="checkout-content" style="display: grid; grid-template-columns: 1fr 400px; gap: 3rem;">
+                <!-- Left Column: Form -->
+                <div class="checkout-form">
+                    <form id="checkoutForm" onsubmit="submitOrder(event)">
+                        <div class="form-section" style="background: white; padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Kontaktní informace</h2>
+                            
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label for="customer_name" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Jméno a příjmení *</label>
+                                <input type="text" id="customer_name" name="customer_name" required placeholder="Jan Novák" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                            </div>
+
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="customer_email" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email *</label>
+                                    <input type="email" id="customer_email" name="customer_email" required placeholder="jan.novak@email.cz" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer_phone" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Telefon</label>
+                                    <input type="tel" id="customer_phone" name="customer_phone" placeholder="+420 123 456 789" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section" style="background: white; padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Doručovací adresa</h2>
+                            
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label for="street" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Ulice a číslo popisné *</label>
+                                <input type="text" id="street" name="street" required placeholder="Hlavní 123" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                            </div>
+
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="city" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Město *</label>
+                                    <input type="text" id="city" name="city" required placeholder="Praha" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="postal_code" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">PSČ *</label>
+                                    <input type="text" id="postal_code" name="postal_code" required placeholder="110 00" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section" style="background: white; padding: 2rem; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Způsob platby</h2>
+                            
+                            <div class="payment-methods" style="display: flex; flex-direction: column; gap: 1rem;">
+                                <label class="payment-option" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 10px; cursor: pointer;">
+                                    <input type="radio" name="payment_method" value="bank_transfer" checked>
+                                    <div class="payment-option-content">
+                                        <strong>Bankovní převod</strong>
+                                        <p style="font-size: 0.9rem; color: var(--text-color-light);">Platba převodem na účet</p>
+                                    </div>
+                                </label>
+
+                                <label class="payment-option" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 10px; cursor: pointer; opacity: 0.6;">
+                                    <input type="radio" name="payment_method" value="card" disabled>
+                                    <div class="payment-option-content">
+                                        <strong>Platební karta</strong>
+                                        <p style="font-size: 0.9rem; color: var(--text-color-light);">Brzy dostupné</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn" style="padding: 1.2rem; font-size: 1.2rem;">
+                            Odeslat objednávku
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <div class="order-summary" style="background: var(--background-color-alt); padding: 2rem; border-radius: 15px; height: fit-content;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Shrnutí objednávky</h2>
+                    
+                    <div class="summary-items" id="summaryItems" style="margin-bottom: 2rem;">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+
+                    <div class="summary-totals" style="border-top: 2px solid var(--border-color); padding-top: 1.5rem;">
+                        <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Mezisoučet:</span>
+                            <strong id="subtotal">0 Kč</strong>
+                        </div>
+                        <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Doprava:</span>
+                            <strong id="shipping">Dle dohody</strong>
+                        </div>
+                        <div class="summary-row summary-total" style="display: flex; justify-content: space-between; margin-top: 1rem; font-size: 1.4rem; color: var(--primary-color);">
+                            <span>Celkem:</span>
+                            <strong id="total">0 Kč</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Nech mě růst z.s. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,1020 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aktuální dění z Louky. Přečtěte si novinky o zvířecích obyvatelích, našich projektech a plánovaných akcích.">
+    <title>Nech mě růst - Novinky z Louky</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <!-- Specifické styly pro novinky a newsletter -->
+    <style>
+        /* Layout novinek */
+        .news-section {
+            padding: 80px 0;
+            background-color: var(--background-color);
+        }
+
+        .news-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Karta novinky */
+        .news-card {
+            background: var(--white-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color-light);
+            margin-bottom: 60px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            box-shadow: 0 15px 40px var(--shadow-color-dark);
+        }
+
+        .news-header {
+            padding: 40px 40px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--background-color-alt);
+        }
+
+        .news-date {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-title-post {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .news-body {
+            padding: 40px;
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .news-body h3 {
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .news-body p {
+            margin-bottom: 1.5em;
+            color: #444;
+        }
+
+        .news-body ul {
+            margin-bottom: 1.5em;
+            padding-left: 20px;
+        }
+        
+        .news-body li {
+            margin-bottom: 0.8em;
+            position: relative;
+        }
+
+        .news-body strong {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .news-body a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .news-body a:hover {
+            border-color: var(--primary-color);
+        }
+
+        /* Alert box v textu */
+        .news-alert {
+            background-color: #fff5f5;
+            border-left: 4px solid #d9534f;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Newsletter Sekce */
+        .newsletter-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(45, 90, 61, 0.05), rgba(74, 124, 89, 0.05));
+            border-top: 1px solid var(--border-color);
+        }
+
+        .newsletter-box {
+            background: var(--white-color);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 2px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 20px rgba(45, 90, 61, 0.2);
+        }
+
+        .newsletter-icon i {
+            font-size: 2.2rem;
+            color: var(--white-color);
+        }
+
+        .newsletter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .newsletter-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-color-light);
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 15px 25px;
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background-color: var(--background-color-alt);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--white-color);
+            box-shadow: 0 0 0 4px rgba(45, 90, 61, 0.1);
+        }
+
+        .newsletter-submit-btn {
+            width: 100%;
+            padding: 16px 30px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .newsletter-submit-btn:hover {
+            background: var(--primary-color-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .newsletter-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .newsletter-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .newsletter-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Skrytí starších novinek */
+		        .news-archive-content {
+		            display: none;
+		            margin-top: 40px;
+		            padding-top: 20px;
+		            border-top: 1px solid var(--border-color);
+		        }
+		
+		        .news-archive-toggle {
+		            display: block;
+		            text-align: center;
+		            margin-bottom: 40px;
+		        }
+		
+		        .archive-btn {
+		            background-color: var(--secondary-color);
+		            color: var(--white-color);
+		            padding: 12px 25px;
+		            border-radius: 30px;
+		            text-decoration: none;
+		            font-weight: 600;
+		            transition: background-color 0.3s ease;
+		            border: none;
+		            cursor: pointer;
+		            font-size: 1rem;
+		        }
+		
+		        .archive-btn:hover {
+		            background-color: var(--secondary-color-hover);
+		        }
+		
+		        /* Tlačítko pro eshop */
+		        .eshop-btn {
+		            display: inline-block;
+		            background-color: #000; /* Shopify barva */
+		            color: #fff;
+		            padding: 15px 30px;
+		            border-radius: 8px;
+		            text-decoration: none;
+		            font-weight: 700;
+		            font-size: 1.1rem;
+		            margin: 20px 0;
+		            transition: background-color 0.3s ease, transform 0.3s ease;
+		        }
+		
+		        .eshop-btn:hover {
+		            background-color: #333;
+		            transform: translateY(-2px);
+		        }
+		
+		        /* Místo pro fotky */
+		        .photo-placeholder {
+		            margin: 30px 0;
+		            padding: 20px;
+		            background-color: var(--background-color-alt);
+		            border-radius: 10px;
+		            text-align: center;
+		            border: 1px dashed var(--border-color);
+		        }
+		
+		        .photo-placeholder p {
+		            color: var(--text-color-light);
+		            font-style: italic;
+		            margin: 0;
+		        }
+	/* Styl pro galerii novinek */
+	.news-gallery {
+	    display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	    gap: 20px;
+	    margin: 30px 0;
+	}
+	
+	.news-gallery img {
+	    width: 100%;
+	    height: 250px; /* Fixní výška zajistí, že budou všechny stejně vysoké */
+	    object-fit: cover; /* Ořízne obrázek, aby seděl do rozměru a nedeformoval se */
+	    border-radius: 10px;
+	    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+	    transition: transform 0.3s ease;
+	    cursor: pointer;
+	}
+	
+	.news-gallery img:hover {
+	    transform: scale(1.03); /* Jemné zvětšení při najetí myší */
+	    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+	}
+	
+	/* Responsivita pro mobily - aby byly obrázky přes celou šířku */
+	@media (max-width: 600px) {
+	    .news-gallery {
+	        grid-template-columns: 1fr;
+	    }
+	    .news-gallery img {
+	        height: auto; /* Na mobilu necháme přirozenou výšku */
+	        max-height: 400px;
+	    }
+	}
+    </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J1EYDZ6G3W');
+</script>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="assets/logo.png" alt="Nech mě růst" class="logo"></a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a href="o-nas.html" class="nav-link" data-cs="O nás" data-en="About Us">O nás</a>
+                </li>
+                <li class="nav-item">
+                    <a href="jak-se-zapojit.html" class="nav-link" data-cs="Jak se zapojit" data-en="Get Involved">Jak se zapojit</a>
+                </li>
+                <!-- Aktivní položka Novinky -->
+                <li class="nav-item">
+                    <a href="novinky.html" class="nav-link active" data-cs="Novinky" data-en="News">Novinky</a>
+                </li>
+                <li class="nav-item">
+                    <a href="zvireci-obyvatele.html" class="nav-link" data-cs="Zvířecí obyvatelé" data-en="Animal Residents">Zvířecí obyvatelé</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="udalosti.html" class="nav-link" data-cs="Události" data-en="Events">Události</a>
+                </li>
+                <li class="nav-item">
+                    <a href="kontakt.html" class="nav-link" data-cs="Kontakt" data-en="Contact">Kontakt</a>
+                </li>
+<li class="nav-item">
+                    <a href="galerie.html" class="nav-link" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="obchod/index.html" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+                
+                <li class="nav-item language-switcher">
+                    <button id="lang-toggle" class="lang-btn">
+                        <span class="lang-text">EN</span>
+                    </button>
+                </li>
+            </ul>
+            <button class="hamburger" aria-label="Otevřít/zavřít menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-image">
+            <img data-src="assets/about-hero.webp" alt="Louka pozadí" class="hero-bg" loading="lazy">
+        </div>
+        <div class="container">
+            <h1 class="page-title" data-cs="Novinky z Louky" data-en="News from the Meadow">Novinky z Louky</h1>
+            <p class="page-description" data-cs="Přečtěte si, co je u nás nového, radostného i náročného v životě našich zvířecích obyvatel" data-en="Read about what is new, joyful, and challenging in the lives of our animal residents">
+                Přečtěte si, co je u nás nového, radostného i náročného v životě našich zvířecích obyvatel.
+            </p>
+        </div>
+    </section>
+
+    <!-- Hlavní obsah s příspěvky -->
+    <section class="news-section">
+        <div class="news-container">
+
+            <div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+                
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                        📅 19. 3. 2026
+                    </span>
+                </div>
+
+                <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Naše Máša má nemocnou pacičku" data-en="Our Masha has a sore paw">
+                    Naše Máša má nemocnou pacičku
+                </h3>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Naše milovaná kočička Blondýnka ze Sibiře, Máša, nás v posledních dnech trochu potrápila. Zjistili jsme, že má nemocnou pacičku, což jí způsobovalo bolest a neumožňovalo jí plně si užívat běžné kočičí radosti." data-en="Our beloved Siberian blonde cat, Masha, has given us a bit of a scare in recent days. We found out she has a sore paw, which was causing her pain and preventing her from fully enjoying her usual feline joys.">
+                    Naše milovaná kočička Blondýnka ze Sibiře, Máša, nás v posledních dnech trochu potrápila. Zjistili jsme, že má nemocnou pacičku, což jí způsobovalo bolest a neumožňovalo jí plně si užívat běžné kočičí radosti.
+                </p>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Okamžitě jsme s ní vyrazili na veterinu, kde jí byla poskytnuta veškerá potřebná péče. Dostala léky proti bolesti, aby se jí ulevilo, a také antibiotika pro léčbu případné infekce. Máša je statečná a věříme, že se brzy uzdraví." data-en="We immediately took her to the vet, where she was given all the necessary care. She received pain medication to make her comfortable, as well as antibiotics to treat a potential infection. Masha is brave, and we believe she will recover soon.">
+                    Okamžitě jsme s ní vyrazili na veterinu, kde jí byla poskytnuta veškerá potřebná péče. Dostala léky proti bolesti, aby se jí ulevilo, a také antibiotika pro léčbu případné infekce. Máša je statečná a věříme, že se brzy uzdraví.
+                </p>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="O víkendu s ní půjdeme na kontrolu, abychom se ujistili, že léčba probíhá správně a pacička se hojí. Držíme jí palce a děkujeme za vaši podporu!" data-en="We will take her for a check-up over the weekend to ensure the treatment is going well and the paw is healing. We're keeping our fingers crossed for her and thank you for your support!">
+                    O víkendu s ní půjdeme na kontrolu, abychom se ujistili, že léčba probíhá správně a pacička se hojí. Držíme jí palce a děkujeme za vaši podporu!
+                </p>
+
+                <div class="news-gallery" style="grid-template-columns: 1fr;">
+                    <div class="photo-placeholder"><p><img src="assets/masule.webp" alt="Kočička Máša" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;"></p></div>
+                </div>
+
+            </div>
+
+
+<!-- NOVINKA - Plánovaná procházka 11. dubna -->
+            <div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+                
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                        📅 11. 4. 2026
+                    </span>
+                </div>
+
+                <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Společná procházka v dubnu" data-en="Joint walk in April">
+                    Společná procházka v dubnu
+                </h3>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Srdečně vás zveme na další společnou procházku, která se uskuteční v sobotu 11. dubna. Sraz bude v 10:30 přímo u nás na Louce. Těšíme se na další krásný čas strávený společně se zvířaty i s vámi!" data-en="We cordially invite you to another joint walk, which will take place on Saturday, April 11th. We will meet at 10:30 directly at our Meadow. We look forward to another beautiful time spent together with the animals and you!">
+                    Srdečně vás zveme na další společnou procházku, která se uskuteční v sobotu 11. dubna. Sraz bude v 10:30 přímo u nás na Louce. Těšíme se na další krásný čas strávený společně se zvířaty i s vámi!
+                </p>
+
+                <div class="news-gallery" style="grid-template-columns: 1fr;">
+                    <div class="photo-placeholder"><p><img src="assets/prochy.webp" alt="Společná procházka" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;"></p></div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <a href="https://nechmerust.org/udalosti.html" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background 0.3s;" data-cs="Zobrazit události →" data-en="View events →">
+                        Zobrazit události &rarr;
+                    </a>
+                </div>
+
+            </div>
+
+<!-- NOVINKA - Procházka 14. března -->
+            <div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+                
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                        📅 14. 3. 2026
+                    </span>
+                </div>
+
+                <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Procházka 14. března je úspěšně za námi" data-en="The March 14th walk is successfully behind us">
+                    Procházka 14. března je úspěšně za námi
+                </h3>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Naše březnová procházka byla naprosto kouzelná! Sešlo se nás téměř 40 lidí a atmosféra byla plná radosti. Zvířata si pozornost a společnost návštěvníků moc užila. Bylo pro nás krásné sdílet společné chvíle se všemi bytostmi, které za námi dorazily." data-en="Our March walk was absolutely magical! Almost 40 people gathered, and the atmosphere was full of joy. The animals really enjoyed the attention and company of the visitors. It was beautiful for us to share these moments with all the beings who came to see us.">
+                    Naše březnová procházka byla naprosto kouzelná! Sešlo se nás téměř 40 lidí a atmosféra byla plná radosti. Zvířata si pozornost a společnost návštěvníků moc užila. Bylo pro nás krásné sdílet společné chvíle se všemi bytostmi, které za námi dorazily.
+                </p>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Moc děkujeme za všechny vaše příspěvky a dary, kterých si nesmírně vážíme. Stejně tak děkujeme za krásné fotky a záběry, které jste s námi posdíleli." data-en="Thank you very much for all your contributions and gifts, which we value immensely. We also thank you for the beautiful photos and footage you shared with us.">
+                    Moc děkujeme za všechny vaše příspěvky a dary, kterých si nesmírně vážíme. Stejně tak děkujeme za krásné fotky a záběry, které jste s námi posdíleli.
+                </p>
+
+                <div class="news-gallery">
+                    <div class="photo-placeholder"><p><img src="assets/prochy1.webp" alt="Společná procházka" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;"></p></div>
+                    <div class="photo-placeholder"><p><img src="assets/prochy2.webp" alt="Společná procházka" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;"></p></div>
+                    
+                </div>
+
+            </div>
+
+<!-- NOVÁ AKTUALITA - Putování se zvířaty -->
+            <div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+                
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                        📅 24. 4. 2026
+                    </span>
+                </div>
+
+                <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="🌿 Dvoudenní putování se zvířaty" data-en="🌿 Two-day wandering with animals">
+                    🌿 Dvoudenní putování se zvířaty
+                </h3>
+
+                <a href="putovani-se-zviraty.html" style="display: block; margin-bottom: 20px;">
+                    <img src="assets/hero-image.webp" alt="Putování se zvířaty" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;">
+                </a>
+
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Připravujeme pro vás neuvěřitelné dobrodružství! Vydáme se na dvoudenní putování středočeskou krajinou ve společnosti psů, osla, muflona a dalších zvířecích přátel. Spát budeme pod širým nebem, večeři si připravíme na ohni s hudebním doprovodem a ráno si můžete vyzkoušet rozcvičku v duchu kung-fu. Tohle bude nezapomenutelný čas plný sdílení a plynutí života!" data-en="We are preparing an incredible adventure for you! We will set out on a two-day journey through the Central Bohemian landscape in the company of dogs, a donkey, a mouflon, and other animal friends. We will sleep under the open sky, prepare dinner over a fire with musical accompaniment, and in the morning you can try a kung-fu style warm-up. This will be an unforgettable time full of sharing and the flow of life!">
+                    Připravujeme pro vás neuvěřitelné dobrodružství! Vydáme se na dvoudenní putování středočeskou krajinou ve společnosti psů, osla, muflona a dalších zvířecích přátel. Spát budeme pod širým nebem, večeři si připravíme na ohni s hudebním doprovodem a ráno si můžete vyzkoušet rozcvičku v duchu kung-fu. Tohle bude nezapomenutelný čas plný sdílení a plynutí života!
+                </p>
+
+                <a href="putovani-se-zviraty.html" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background 0.3s;" data-cs="Více informací a registrace →" data-en="More information and registration →">
+                    Více informací a registrace →
+                </a>
+
+            </div>
+
+<div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+    
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+            📅 14. 3. 2026
+        </span>
+    </div>
+
+    <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Toulky se zvířecí karavanou" data-en="Wandering with an animal caravan">
+        Toulky se zvířecí karavanou
+    </h3>
+
+    <a href="udalosti.html" style="display: block; margin-bottom: 20px;">
+        <img src="assets/toulky2.webp" alt="Toulky" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;">
+    </a>
+
+    <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Zveme vás na další společné putování s našimi zvířecími kamarády! Tentokrát se sejdeme v polovině března, abychom společně přivítali blížící se jaro." data-en="We invite you to another joint wandering with our animal friends! This time we will meet in mid-March to welcome the approaching spring together.">
+        Zveme vás na další společné putování s našimi zvířecími kamarády! Tentokrát se sejdeme v polovině března, abychom společně přivítali blížící se jaro.
+    </p>
+
+    <a href="udalosti.html" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background 0.3s;" data-cs="Zobrazit podrobnosti o akci →" data-en="View event details →">
+        Zobrazit podrobnosti o akci &rarr;
+    </a>
+
+</div>
+
+<div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+    
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+            📅 14. 2. 2026
+        </span>
+    </div>
+
+    <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Poděkování za Valentýnskou procházku" data-en="Thank you for the Valentine's Walk">
+        Poděkování za Valentýnskou procházku
+    </h3>
+
+    <a style="display: block; margin-bottom: 20px;">
+        <img src="assets/valentyn.jpg" alt="Toulky" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;">
+    </a>
+
+    <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Valentinská procházka je úspěšně za námi! Byla překrásná a moc děkujeme všem zúčastněným za účast, jejich dary a mazlení zvířat. Moc jsme si to společně užili." data-en="The Valentine's Walk is successfully behind us! It was beautiful, and we thank all participants for coming, their gifts, and for cuddling the animals. We really enjoyed it together.">
+        Valentinská procházka je úspěšně za námi! Byla překrásná a moc děkujeme všem zúčastněným za účast, jejich dary a mazlení zvířat. Moc jsme si to společně užili.
+    </p>
+
+    <p>
+                            <a href="https://www.instagram.com/reel/DUvyvV8jfr4/?igsh=YTJxM2R3aWtmZm5n" target="_blank" data-cs="Podívejte se na video reel na našem Instagramu" data-en="Check out the video reel on our Instagram">
+                                <i class="fab fa-instagram"></i> Podívejte se na video reel na našem Instagramu
+                            </a>
+                        </p>
+
+</div>
+<div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+    
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+            📅 18. 2. 2026
+        </span>
+    </div>
+
+    <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Zimní okénko: Kesy a Julek" data-en="Winter Window: Kesy and Julek">
+        Zimní okénko: Kesy a Julek
+    </h3>
+
+    <a style="display: block; margin-bottom: 20px;">
+        <img src="assets/kesy.webp" alt="Kesy" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;">
+    </a>
+
+    <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Zima je u nás celkem klidná, tedy až na občasné nahánění Kesy a zvýšenou péči o kohouta Julka. Ten se momentálně hřeje v boudě a z vděčnosti začíná kokrhat už ve 4 hodiny ráno. Máme tak o spolehlivý budíček postaráno!" data-en="Winter is quite peaceful here, except for the occasional chasing of Kesy and increased care for Julek the rooster. He is currently keeping warm in the coop and, out of gratitude, starts crowing as early as 4 AM. So we have a reliable alarm clock!">
+        Zima je u nás celkem klidná, tedy až na občasné nahánění Kesy a zvýšenou péči o kohouta Julka. Ten se momentálně hřeje v boudě a z vděčnosti začíná kokrhat už ve 4 hodiny ráno. Máme tak o spolehlivý budíček postaráno!
+    </p>
+
+    <a href="virtualni-adopce.html" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background 0.3s;" data-cs="Virtuální adopce →" data-en="Virtual Adoption →">
+        Virtuální adopce &rarr;
+    </a>
+
+</div>
+
+
+<div class="novinka-item" style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eee;">
+    
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <span style="color: #2e7d32; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+            📅 18. 2. 2026
+        </span>
+    </div>
+
+    <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; color: #333; line-height: 1.3;" data-cs="Navštívili nás Hovory ze země" data-en="Talks from the Earth visited us">
+        Navštívili nás Hovory ze země
+    </h3>
+
+    <a style="display: block; margin-bottom: 20px;">
+        <img src="assets/tom.jpg" alt="Tom" style="width: 100%; border-radius: 6px; height: auto; object-fit: cover;">
+    </a>
+
+    <p style="color: #555; line-height: 1.6; margin-bottom: 25px;" data-cs="Máme velkou radost, že nás navštívili Hovory ze země. Tomášovo povídání o naší Louce a zvířatech si můžete poslechnout ve videu." data-en="We are very happy that Talks from the Earth visited us. You can listen to Tomáš's talk about our Meadow and animals in the video.">
+       Máme velkou radost, že nás navštívili Hovory ze země. Tomášovo povídání o naší Louce a zvířatech si můžete poslechnout ve videu.
+    </p>
+
+    <a href="https://youtu.be/1pVDwP4iqWA?si=okKKTsAtnmTwmY4N" style="display: inline-block; background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; transition: background 0.3s;" data-cs="Hovory ze země →" data-en="Talks from the Earth →">
+        Hovory ze země &rarr;
+    </a>
+
+</div>
+
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">
+                        <i class="far fa-calendar-alt"></i>&nbsp; <span data-cs="Aktuálně" data-en="Current">Aktuálně</span>
+                    </span>
+                    <h2 class="news-title-post" data-cs="🤝 Výzva pro tvůrce: Pojďte s námi do toho!" data-en="🤝 Call for creators: Join us!">
+                        🤝 Výzva pro tvůrce: Pojďte s námi do toho!
+                    </h2>
+                </div>
+                <div class="news-body">
+                    <p data-cs="Chcete podpořit naše snažení a zároveň nabídnout své výrobky široké veřejnosti? Hledáme šikovné tvůrce, řemeslníky a umělce, kteří by se chtěli zapojit do spolupráce a prodávat své produkty přes náš e-shop. Každá spolupráce pomáhá zvířatům!" data-en="Do you want to support our efforts and at the same time offer your products to the public? We are looking for skilled creators, craftsmen, and artists who would like to collaborate and sell their products through our e-shop. Every collaboration helps the animals!">
+                        Chcete podpořit naše snažení a zároveň nabídnout své výrobky široké veřejnosti? Hledáme šikovné tvůrce, řemeslníky a umělce, kteří by se chtěli zapojit do spolupráce a prodávat své produkty přes náš e-shop. Každá spolupráce pomáhá zvířatům!
+                    </p>
+                    <p data-cs="Ozvěte se nám na: info@nechmerust.org nebo našem Instagramu" data-en="Contact us at: info@nechmerust.org or our Instagram">
+                        Ozvěte se nám na: <a href="mailto:info@nechmerust.org">info@nechmerust.org</a> nebo <a href="https://www.instagram.com/nech_me_rust" target="_blank">našem Instagramu</a>
+                    </p>
+                </div>
+            </article>
+		
+		                    <hr style="margin: 40px 0; border-color: var(--border-color);">
+		
+		                    
+		
+		                    
+		                </div>
+		            </article>
+		
+		            <!-- ========================================== -->
+		            <!-- ARCHIV NOVINEK -->
+		            <!-- ========================================== -->
+		            <div class="news-archive-toggle">
+		                <button id="archive-toggle-btn" class="archive-btn" data-cs="Zobrazit starší novinky" data-en="Show older news">
+		                    Zobrazit starší novinky
+		                </button>
+		            </div>
+		
+		            <div id="news-archive" class="news-archive-content">
+	<article class="news-card">
+	    <div class="news-header">
+	        <span class="news-date">
+	            <i class="far fa-calendar-alt"></i>&nbsp; <span data-cs="13.12.2025" data-en="13.12.2025">13.12.2025</span>
+	        </span>
+	        <h2 class="news-title-post" data-cs="Kouzelná procházka" data-en="Magical walk with animals">
+	            Kouzelná procházka
+	        </h2>
+	    </div>	
+	    <div class="news-body">
+	        <p data-cs="Kouzelná procházka se zvířátky je za námi!" data-en="The magical walk with the animals is behind us!">
+	            Kouzelná procházka se zvířátky je za námi!
+	        </p>
+	        <p data-cs="Už jsme se byli se zvířátky projít a bylo to kouzelné. Děkujeme všem, kteří dorazili a pomohli vytvořit nezapomenutelnou atmosféru. Zvířátka si to moc užila a my s nimi!" data-en="We have already been for a walk with the animals and it was magical. Thank you to everyone who came and helped create an unforgettable atmosphere. The animals enjoyed it very much, and so did we!">
+	            Už jsme se byli se zvířátky projít a bylo to kouzelné. Děkujeme všem, kteří dorazili a pomohli vytvořit nezapomenutelnou atmosféru. Zvířátka si to moc užila a my s nimi!
+	        </p>
+	        
+	        <div class="news-gallery">
+	            <img src="assets/prochazka.webp" alt="Kouzelná procházka se zvířátky" loading="lazy">
+	            <img src="assets/prochazka1.webp" alt="Účastníci procházky na Louce" loading="lazy">
+	            <img src="assets/prochazka2.webp" alt="Zvířecí obyvatelé" loading="lazy">
+	            <img src="assets/prochazka3.webp" alt="Atmosféra zimní procházky" loading="lazy">
+	        </div>
+	    </div>
+	</article>
+		                    
+		
+	<article class="news-card">
+
+		                <div class="news-header">
+		                    <span class="news-date">
+		                        <i class="far fa-calendar-alt"></i>&nbsp; <span data-cs="08. 12. 2025" data-en="Dec 08, 2025">08. 12. 2025</span>
+		                    </span>
+		                    <h2 class="news-title-post" data-cs="Luční obchůdek je spuštěn! A těšíme se na společnou procházku 13.12." data-en="Meadow Shop is launched! And we look forward to the joint walk on Dec 13th.">
+		                        Luční obchůdek je spuštěn! A těšíme se na společnou procházku 13.12.
+		                    </h2>
+		                </div>
+		                <div class="news-body">
+		                    
+		                    <h3 data-cs="🎉 S nadšením oznamujeme: Luční obchůdek je ONLINE! 🎉" data-en="🎉 We are excited to announce: Meadow Shop is ONLINE! 🎉">
+		                        🎉 S nadšením oznamujeme: Luční obchůdek je ONLINE! 🎉
+		                    </h3>
+		                    <p data-cs="Po dlouhých přípravách je náš e-shop, Luční obchůdek, konečně spuštěn! Nákupem jakéhokoliv produktu podpoříte přímo chod naší Louky a péči o zvířecí obyvatele. Najdete zde výrobky z naší tvorby i krásné věci od našich spřátelených tvůrců." data-en="After long preparations, our e-shop, Meadow Shop, is finally launched! By purchasing any product, you directly support the running of our Meadow and the care of our animal residents. You will find products from our creation as well as beautiful items from our friendly creators.">
+		                        Po dlouhých přípravách je náš e-shop, Luční obchůdek, konečně spuštěn! Nákupem jakéhokoliv produktu podpoříte přímo chod naší Louky a péči o zvířecí obyvatele. Najdete zde výrobky z naší tvorby i krásné věci od našich spřátelených tvůrců.
+		                    </p>
+
+		                    <div style="text-align: center;">
+		                        <a href="https://lucniobchudek.myshopify.com" target="_blank" class="eshop-btn" data-cs="Otevřít Luční obchůdek" data-en="Open Meadow Shop">
+		                            <i class="fas fa-shopping-basket"></i> Otevřít Luční obchůdek
+		                        </a>
+		                    </div>
+		            <!-- PŘÍSPĚVEK 1: Podzim 2025 (přesunuto do archivu) -->
+		            <!-- ========================================== -->
+		            <article class="news-card">
+		                <div class="news-header">
+		                    <span class="news-date">
+		                        <i class="far fa-calendar-alt"></i>&nbsp; <span data-cs="21. 11. 2025" data-en="Nov 21, 2025">21. 11. 2025</span>
+		                    </span>
+		                    <h2 class="news-title-post" data-cs="Podzimní ohlédnutí: Plné seníky, bojovnice Princezna a novinky z Lučního obchůdku" data-en="Autumn Retrospective: Full Haylofts, Warrior Princess, and Meadow Shop News">
+		                        Podzimní ohlédnutí: Plné seníky, bojovnice Princezna a novinky z Lučního obchůdku
+		                    </h2>
+		                </div>
+		                <div class="news-body">
+		                    <p data-cs="Milí přátelé a příznivci Louky," data-en="Dear friends and supporters of the Meadow,">
+		                        Milí přátelé a příznivci Louky,
+		                    </p>
+		                    <p data-cs="podzim se pomalu chýlí ke konci a my bychom se s vámi rádi podělili o to, co všechno se u nás v posledních týdnech událo. Bylo to období plné kontrastů – zažili jsme obrovskou vlnu solidarity, radost z uzdravování, ale i náročné chvíle bojů s počasím a nemocemi." data-en="autumn is slowly coming to an end, and we would like to share with you what has happened here in recent weeks. It was a period full of contrasts – we experienced a huge wave of solidarity and the joy of recovery, but also difficult moments battling the weather and illness.">
+		                        podzim se pomalu chýlí ke konci a my bychom se s vámi rádi podělili o to, co všechno se u nás v posledních týdnech událo. Bylo to období plné kontrastů – zažili jsme obrovskou vlnu solidarity, radost z uzdravování, ale i náročné chvíle bojů s počasím a nemocemi.
+		                    </p>
+
+		                    <h3 data-cs="Seníky praskají ve švech – díky VÁM! 🌾" data-en="Haylofts are bursting at the seams – thanks to YOU! 🌾">Seníky praskají ve švech – díky VÁM! 🌾</h3>
+		                    <p data-cs="Začneme tou nejlepší zprávou. Díky vaší úžasné podpoře ve sbírce se nám podařilo naplnit seníky až po strop! Je to pro nás obrovská úleva. Víme, že ať bude zima jakákoliv, naše bříška budou mít co jíst. Děkujeme každému z vás, kdo přispěl. Bez vás by to nešlo." data-en="Let's start with the best news. Thanks to your amazing support in the fundraiser, we managed to fill the haylofts to the ceiling! It is a huge relief for us. We know that whatever the winter brings, our bellies will have enough to eat. Thank you to everyone who contributed. We couldn't do it without you.">
+		                        Začneme tou nejlepší zprávou. Díky vaší úžasné podpoře ve sbírce se nám podařilo naplnit seníky až po strop! Je to pro nás obrovská úleva. Víme, že ať bude zima jakákoliv, naše bříška budou mít co jíst. Děkujeme každému z vás, kdo přispěl. Bez vás by to nešlo.
+		                    </p>
+
+		                    <h3 data-cs="Dýňová sezóna a boj s větry 🎃💨" data-en="Pumpkin season and battling the winds 🎃💨">Dýňová sezóna a boj s větry 🎃💨</h3>
+		                    <p data-cs="Máme za sebou také intenzivní dýňovou sezónu. Pomáhali jsme v Dýňovém světě a provozovali náš stánek. Byla to fuška, ale krásná. Bohužel, příroda nám ukázala svou sílu a silný vítr nám náš stánek zničil. I to je ale život na venkově a my se nevzdáváme. Mezitím jsme na Louce stihli velký úkol – úspěšně jsme odvodnili sklep, což je pro Luční zázemí klíčové." data-en="We also have an intense pumpkin season behind us. We helped at the Pumpkin World and ran our stall. It was hard work, but beautiful. Unfortunately, nature showed its strength, and strong winds destroyed our stall. But that is life in the countryside, and we are not giving up. Meanwhile, we managed a big task at the Meadow – we successfully drained the cellar, which is crucial for our facilities.">
+		                        Máme za sebou také intenzivní dýňovou sezónu. Pomáhali jsme v Dýňovém světě a provozovali náš stánek. Byla to fuška, ale krásná. Bohužel, příroda nám ukázala svou sílu a silný vítr nám náš stánek zničil. I to je ale život na venkově a we are not giving up. Mezitím jsme na Louce stihli velký úkol – úspěšně jsme odvodnili sklep, což je pro Luční zázemí klíčové.
+		                    </p>
+
+		                    <h3 data-cs="Princezna se uzdravuje 🐷" data-en="Princess is recovering 🐷">Princezna se uzdravuje 🐷</h3>
+		                    <p data-cs="Jak mnozí víte, naše prasinka Princezna podstoupila nákladnou a náročnou operaci. S radostí hlásíme, že se zotavuje! Je to naše velká bojovnice. Děkujeme za všechny myšlenky a příspěvky, které jí pomohly zajistit tu nejlepší péči." data-en="As many of you know, our pig Princess underwent a costly and difficult surgery. We are happy to report that she is recovering! She is our great fighter. Thank you for all the thoughts and contributions that helped ensure she got the best care.">
+		                        Jak mnozí víte, naše prasinka Princezna podstoupila nákladnou a náročnou operaci. S radostí hlásíme, že se zotavuje! Je to naše velká bojovnice. Děkujeme za všechny myšlenky a příspěvky, které jí pomohly zajistit tu nejlepší péči.
+		                    </p>
+
+		                    <div class="news-alert">
+		                        <strong data-cs="⚠️ Zdraví nás trochu potrápilo – ZRUŠENÍ akcí" data-en="⚠️ Health issues troubled us – Events CANCELLED">⚠️ Zdraví nás trochu potrápilo – ZRUŠENÍ akcí</strong><br>
+		                        <span data-cs="Bohužel, s podzimem přišly i nemoci, které se nevyhnuly ani nám dvounožcům, ani zvířecím obyvatelům. Abychom všichni nabrali sílu a nic se nepřenášelo, jsme nuceni" data-en="Unfortunately, with autumn came illnesses that avoided neither us two-legged folks nor the animal residents. To regain strength and prevent spreading, we are forced to">
+		                            Bohužel, s podzimem přišly i nemoci, které se nevyhnuly ani nám dvounožcům, ani zvířecím obyvatelům. Abychom všichni nabrali sílu a nic se nepřenášelo, jsme nuceni
+		                        </span>
+		                        <strong data-cs="zrušit nadcházející Loukádu i nejbližší společnou procházku." data-en="cancel the upcoming Meadow Fest and the nearest joint walk.">zrušit nadcházející Loukádu i nejbližší společnou procházku.</strong>
+		                        <span data-cs="Moc nás to mrzí, ale zdraví a klid na lůžku (a ve slámě) jsou teď přednější." data-en="We are very sorry, but health and rest in bed (and in the straw) are now the priority.">
+		                            Moc nás to mrzí, ale zdraví a klid na lůžku (a ve slámě) jsou teď přednější.
+		                        </span>
+		                    </div>
+		<div class="news-alert">
+		    <!-- Opraven nadpis alertu, aby odpovídal obsahu -->
+		    <strong data-cs="⚠️ ZRUŠENÍ účasti na Veggie Vánoce" data-en="⚠️ CANCELLATION of participation in Veggie Christmas">
+		        ⚠️ ZRUŠENÍ účasti na Veggie Vánoce
+		    </strong><br>
+		    
+		    <!-- Zde jsou přidány odkazy do HTML i do data atributů pro přepínání jazyka -->
+		    <span 
+		        data-cs="Bohužel vám musíme oznámit, že jsme nuceni zrušit také účast na akci Veggie Vánoce pořádanou @vegan_fighter." 
+		        data-en="Unfortunately, we have to inform you that we are also forced to cancel our participation in the Veggie Christmas event organized by @vegan_fighter.">
+		        
+		        Bohužel vám musíme oznámit, že jsme nuceni zrušit také účast na akci 
+		        <a href="https://www.veggievanoce.cz/" target="_blank">Veggie Vánoce</a> 
+		        pořádanou 
+		        <a href="https://www.instagram.com/vegan_fighter/" target="_blank">@vegan_fighter</a>.
+		    </span>
+
+		    <strong data-cs="Pořadatelům se moc omlouváme." data-en="We apologize to the organizers.">
+		        Pořadatelům se moc omlouváme.
+		    </strong>
+		    
+		    <span data-cs="I přes naši absenci vás srdečně zveme k účasti na akci. Určitě si tam i bez nás užijete skvělou atmosféru a spoustu vegan pochoutek." data-en="Despite our absence, we cordially invite you to participate in the event. You will certainly enjoy a great atmosphere and lots of vegan delicacies even without us.">
+		        I přes naši absenci vás srdečně zveme k účasti na akci. Určitě si tam i bez nás užijete skvělou atmosféru a spoustu vegan pochoutek.
+		    </span>
+		<div class="event-buttons">
+		                        <button class="register-btn facebook-btn" onclick="window.open('https://facebook.com/events/s/veggie-christmas-a-plant-based/1168766404955412/', '_blank')" data-cs="Facebook událost" data-en="Facebook Event" style="background-color: #3b5998;">
+		                            <i class="fab fa-facebook"></i> Facebook událost
+		                        </button>
+		                    </div>
+		</div>
+		                    <h3 data-cs="Naděje na prosinec a VÝZVA tvůrcům ✨" data-en="Hope for December and CALL to creators ✨">Naděje na prosinec a VÝZVA tvůrcům ✨</h3>
+		                    <p data-cs="Věříme, že se brzy všichni dáme do kupy. Moc doufáme, že se uvidíme na poslední akci roku – Kouzelné procházce 13. prosince." data-en="We believe that we will all get back on our feet soon. We very much hope to see you at the last event of the year – the Magical Walk on December 13th.">
+		                        Věříme, že se brzy všichni dáme do kupy. Moc doufáme, že se uvidíme na poslední akci roku – Kouzelné procházce 13. prosince.
+		                    </p>
+		                    <p data-cs="Zároveň máme výzvu pro všechny šikovné tvůrce! Chystáme Luční obchůdek a hledáme originální výrobky, které by potěšily naše příznivce a pomohly zvířatům. Pokud tvoříte s láskou, ozvěte se nám!" data-en="At the same time, we have a call for all skilled creators! We are preparing the Meadow Shop and looking for original products that would delight our supporters and help the animals. If you create with love, get in touch!">
+		                        Zároveň máme výzvu pro všechny šikovné tvůrce! Chystáme Luční obchůdek a hledáme originální výrobky, které by potěšily naše příznivce a pomohly zvířatům. Pokud tvoříte s láskou, ozvěte se nám!
+		                    </p>
+		                </div>
+		            </article>
+		
+		                    
+		
+		                    
+		                </div>
+		            </article>
+
+		            <!-- ========================================== -->
+		            <!-- KONEC ARCHIVU -->
+		            <!-- ========================================== -->
+		        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-box">
+                <div class="newsletter-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h2 class="newsletter-title" data-cs="Zůstaňte s námi v kontaktu" data-en="Stay in Touch">Zůstaňte s námi v kontaktu</h2>
+                <p class="newsletter-description" data-cs="Chcete dostávat novinky z Louky přímo do vaší e-mailové schránky? Přihlaste se k odběru našeho newsletteru." data-en="Want to receive news from the Meadow directly in your inbox? Subscribe to our newsletter.">
+                    Chcete dostávat novinky z Louky přímo do vaší e-mailové schránky? Přihlaste se k odběru našeho newsletteru.
+                </p>
+                
+                <form id="newsletter-form" class="newsletter-form">
+                    <div style="display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto;">
+                        <input type="text" id="newsletter-name" class="newsletter-input" placeholder="Vaše jméno" required>
+                        <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Váš email" required>
+                        <button type="submit" class="newsletter-submit-btn">
+                            <span class="btn-text" data-cs="Chci odebírat novinky" data-en="I want to subscribe">Chci odebírat novinky</span>
+                            <span class="btn-loading" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </div>
+                    <p style="margin-top: 15px;">
+                        <small style="color: #888;">
+                            <span data-cs="Kliknutím na tlačítko souhlasíte se zpracováním osobních údajů." data-en="By clicking the button, you agree to the processing of personal data.">Kliknutím na tlačítko souhlasíte se zpracováním osobních údajů.</span>
+                        </small>
+                    </p>
+                </form>
+                <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title" data-cs="Sledujte nás" data-en="Follow Us">Sledujte nás</h2>
+            <div class="social-media large">
+                <a href="https://www.instagram.com/nech_me_rust" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="mailto:info@nechmerust.org" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+		
+		
+    <footer class="footer">
+        <div class="container">
+
+            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script pro globální funkce webu -->
+    <script src="script.js"></script>
+
+    <!-- JavaScript pro Newsletter Form a Placeholdery -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+		        const newsletterForm = document.getElementById('newsletter-form');
+		
+		        // Logika pro přepínání archivu novinek
+		        const archiveToggleBtn = document.getElementById('archive-toggle-btn');
+		        const newsArchive = document.getElementById('news-archive');
+		        
+		        // Zjištění jazyka pro text tlačítka (předpokládáme, že lang je nastaven na <html>)
+		        const isCzech = document.documentElement.lang === 'cs';
+
+		        if (archiveToggleBtn && newsArchive) {
+		            archiveToggleBtn.addEventListener('click', function() {
+		                const isHidden = newsArchive.style.display === 'none' || newsArchive.style.display === '';
+		                
+		                if (isHidden) {
+		                    newsArchive.style.display = 'block';
+		                    archiveToggleBtn.textContent = isCzech ? 'Skrýt starší novinky' : 'Hide older news';
+		                } else {
+		                    newsArchive.style.display = 'none';
+		                    archiveToggleBtn.textContent = isCzech ? 'Zobrazit starší novinky' : 'Show older news';
+		                }
+		            });
+		
+		            // Skrýt archiv při načtení stránky
+		            newsArchive.style.display = 'none';
+		        }
+		
+		        // Původní logika pro newsletter formulář
+		        
+	        const messageDiv = document.getElementById('newsletter-message');
+	        const submitBtn = newsletterForm.querySelector('.newsletter-submit-btn');
+	        const btnText = submitBtn.querySelector('.btn-text');
+	        const btnLoading = submitBtn.querySelector('.btn-loading');
+
+	        // Funkce pro manuální změnu placeholderů při přepnutí jazyka
+	        // (protože data-cs/en atributy obvykle mění jen innerText)
+	        const langBtn = document.getElementById('lang-toggle');
+	        const nameInput = document.getElementById('newsletter-name');
+	        const emailInput = document.getElementById('newsletter-email');
+
+	        if(langBtn) {
+	            langBtn.addEventListener('click', function() {
+	                // Počkáme chvilku, než script.js změní jazyk, nebo to odhadneme podle textu tlačítka
+	                // Jednodušší logika: pokud je tlačítko "CS", přepínáme na EN. Pokud "EN", přepínáme na CS.
+	                const isEnglishNow = langBtn.querySelector('.lang-text').textContent.trim() === 'CS'; 
+	                // Pozor: záleží na logice ve vašem script.js. Většinou tlačítko ukazuje NA CO přepnout.
+	                // Pokud tlačítko říká "CS", znamená to, že jsme v EN a chceme CS.
+	                // Pokud tlačítko říká "EN", znamená to, že jsme v CS a chceme EN.
+	                
+	                if (langBtn.querySelector('.lang-text').textContent.trim() === 'EN') {
+	                     // Klikli jsme na EN, takže se přepíná na Angličtinu
+	                     nameInput.placeholder = "Your name";
+	                     emailInput.placeholder = "Your email";
+	                } else {
+	                     // Klikli jsme na CS, takže se přepíná na Češtinu
+	                     nameInput.placeholder = "Vaše jméno";
+	                     emailInput.placeholder = "Váš email";
+	                }
+	            });
+	        }
+
+	        newsletterForm.addEventListener('submit', async function(e) {
+	            e.preventDefault();
+	            
+	            const name = document.getElementById('newsletter-name').value.trim();
+	            const email = document.getElementById('newsletter-email').value.trim();
+	            
+	            // Zjištění aktuálního jazyka pro chybové hlášky
+	            const isEnglish = document.documentElement.lang === 'en' || (langBtn && langBtn.textContent.includes('CS'));
+	            
+	            if (!name || !email) {
+	                showMessage(isEnglish ? 'Please fill in all fields.' : 'Prosím vyplňte všechna pole.', 'error');
+	                return;
+	            }
+	            
+	            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	            if (!emailRegex.test(email)) {
+	                showMessage(isEnglish ? 'Please enter a valid email address.' : 'Prosím zadejte platnou emailovou adresu.', 'error');
+	                return;
+	            }
+	            
+	            submitBtn.disabled = true;
+	            btnText.style.display = 'none';
+	            btnLoading.style.display = 'inline';
+	            messageDiv.style.display = 'none';
+	            
+	            try {
+	                // Zde se posílá požadavek na API (PHP skript)
+	                const response = await fetch('newsletter_signup_api.php', {
+	                    method: 'POST',
+	                    headers: {
+		                        'Content-Type': 'application/json',
+	                    },
+	                    body: JSON.stringify({
+	                        name: name,
+	                        email: email,
+	                        action: 'subscribe'
+	                    })
+	                });
+	                
+	                const data = await response.json();
+	                
+	                if (data.success) {
+	                    showMessage(isEnglish ? 'Thank you! You have been successfully subscribed.' : 'Děkujeme! Byli jste úspěšně přihlášeni k odběru novinek. 🎉', 'success');
+	                    newsletterForm.reset();
+	                } else {
+	                    showMessage(data.message || (isEnglish ? 'An error occurred. Please try again later.' : 'Došlo k chybě při přihlášení. Zkuste to prosím později.'), 'error');
+	                }
+	            } catch (error) {
+	                console.error('Error:', error);
+	                showMessage(isEnglish ? 'An error occurred while sending. Please try again later.' : 'Došlo k chybě při odesílání. Zkuste to prosím později.', 'error');
+	            } finally {
+	                submitBtn.disabled = false;
+	                btnText.style.display = 'inline';
+	                btnLoading.style.display = 'none';
+	            }
+	        });
+	        
+	        function showMessage(message, type) {
+	            messageDiv.textContent = message;
+	            messageDiv.className = 'newsletter-message ' + type;
+	            messageDiv.style.display = 'block';
+	            
+	            setTimeout(() => {
+	                messageDiv.style.display = 'none';
+	            }, 6000);
+	        }
+	    });
+    </script>
+</body>
+</html>
