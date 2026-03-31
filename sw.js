@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nech-me-rust-v2.2'; // Zvýšena verze pro aktualizaci
+const CACHE_NAME = 'nech-me-rust-v3.0';
 
 const CORE_FILES = [
     '/',
@@ -10,6 +10,7 @@ const CORE_FILES = [
 ];
 
 const HTML_PAGES = [
+    'landing.html',
     'udalosti.html',
     'kontakt.html',
     'novinky.html',
@@ -19,7 +20,12 @@ const HTML_PAGES = [
     'prispet-kryptem.html',
     'o-nas.html',
     'gdpr.html',
-    'vop.html'
+    'vop.html',
+    'galerie.html',
+    'putovani-se-zviraty.html',
+    'obchod/index.html',
+    'obchod/checkout.html',
+    'obchod/product-detail.html'
 ];
 
 const ASSETS = [
@@ -41,7 +47,7 @@ const ASSETS = [
     'assets/click-and-feed.png',
     'assets/nakrmnas.png',
 
-    // Animals & Others
+    // Animals
     'assets/amalka.webp', 'assets/amalka1.webp', 'assets/amalka2.webp',
     'assets/anaya.webp', 'assets/anaya1.webp', 'assets/anaya3.webp', 'assets/anayan.webp',
     'assets/atila.webp', 'assets/atila1.webp', 'assets/atila2.webp', 'assets/atila3.webp',
@@ -111,58 +117,136 @@ const urlsToCache = [
     ...EXTERNAL_RESOURCES
 ];
 
+// Install event - cache core files
 self.addEventListener('install', event => {
+    console.log('[SW] Installing version', CACHE_NAME);
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('[SW] Caching all files...');
+                console.log('[SW] Caching core files...');
+                return cache.addAll(urlsToCache).catch(err => {
+                    console.warn('[SW] Some files failed to cache:', err);
+                });
+            })
+            .then(() => {
+                console.log('[SW] Skip waiting');
+                return self.skipWaiting();
+            })
+            .catch(err => {
+                console.error('[SW] Install failed:', err);
+            })
+    );
+});
+
+// Activate event - clean old caches
+self.addEventListener('activate', event => {
+    console.log('[SW] Activating version', CACHE_NAME);
+    event.waitUntil(
+        caches.keys()
+            .then(cacheNames => {
                 return Promise.all(
-                    urlsToCache.map(url => {
-                        return cache.add(url).catch(err => {
-                            console.warn(`[SW] Failed to cache ${url}:`, err);
-                        });
+                    cacheNames.map(cacheName => {
+                        if (cacheName !== CACHE_NAME) {
+                            console.log('[SW] Deleting old cache:', cacheName);
+                            return caches.delete(cacheName);
+                        }
                     })
                 );
             })
-            .then(() => self.skipWaiting())
+            .then(() => {
+                console.log('[SW] Claiming clients');
+                return self.clients.claim();
+            })
     );
 });
 
-self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cacheName => {
-                    if (cacheName !== CACHE_NAME) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        }).then(() => self.clients.claim())
-    );
-});
-
+// Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', event => {
-    if (event.request.mode === 'navigate') {
+    const { request } = event;
+    const url = new URL(request.url);
+
+    // Skip non-GET requests
+    if (request.method !== 'GET') {
+        return;
+    }
+
+    // Skip cross-origin requests except for fonts and CDN
+    if (url.origin !== location.origin &&
+        !url.hostname.includes('fonts.googleapis.com') &&
+        !url.hostname.includes('fonts.gstatic.com') &&
+        !url.hostname.includes('cdnjs.cloudflare.com')) {
+        return;
+    }
+
+    // For navigation requests (HTML pages)
+    if (request.mode === 'navigate') {
         event.respondWith(
-            fetch(event.request).catch(() => caches.match('offline.html'))
+            fetch(request)
+                .then(response => {
+                    // Cache the fetched HTML for offline use
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => {
+                        cache.put(request, responseClone);
+                    });
+                    return response;
+                })
+                .catch(() => {
+                    // Try to return cached version or fallback
+                    return caches.match(request)
+                        .then(cachedResponse => {
+                            if (cachedResponse) {
+                                return cachedResponse;
+                            }
+                            return caches.match('index.html');
+                        });
+                })
         );
         return;
     }
 
+    // For other requests (images, scripts, styles)
     event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
-            if (cachedResponse) {
-                return cachedResponse;
-            }
-            return fetch(event.request).then(networkResponse => {
-                 // Cache external resources on the fly
-                if (EXTERNAL_RESOURCES.includes(event.request.url)) {
-                     const cache = caches.open(CACHE_NAME);
-                     cache.put(event.request, networkResponse.clone());
+        caches.match(request)
+            .then(cachedResponse => {
+                if (cachedResponse) {
+                    // Return cached response and update cache in background
+                    fetch(request)
+                        .then(networkResponse => {
+                            if (networkResponse.ok) {
+                                caches.open(CACHE_NAME).then(cache => {
+                                    cache.put(request, networkResponse);
+                                });
+                            }
+                        })
+                        .catch(() => {});
+                    return cachedResponse;
                 }
-                return networkResponse;
-            });
-        })
+
+                // Not in cache, fetch from network
+                return fetch(request)
+                    .then(networkResponse => {
+                        if (networkResponse.ok) {
+                            const responseClone = networkResponse.clone();
+                            caches.open(CACHE_NAME).then(cache => {
+                                cache.put(request, responseClone);
+                            });
+                        }
+                        return networkResponse;
+                    })
+                    .catch(() => {
+                        // Return fallback for images
+                        if (request.destination === 'image') {
+                            return new Response('', { status: 404 });
+                        }
+                        return new Response('Offline', { status: 503 });
+                    });
+            })
     );
+});
+
+// Handle messages from the main thread
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
 });

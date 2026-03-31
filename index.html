@@ -5,30 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Nech mě růst z.s. je nezisková organizace s vizí tvorby rodového statku, kde žijeme v harmonii s přírodou, zvířaty i sebou navzájem. Poznejte náš projekt.">
     <title>Nech mě růst - Domů</title>
+    <link rel="canonical" href="https://nechmerust.org/">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="assets/logo.png">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nechmerust.org/">
+    <meta property="og:title" content="Nech mě růst - Domů">
+    <meta property="og:description" content="Nezisková organizace s vizí tvorby rodového statku, kde žijeme v harmonii s přírodou, zvířaty i sebou navzájem.">
+    <meta property="og:image" content="https://nechmerust.org/assets/hero-image.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nech mě růst - Domů">
+    <meta name="twitter:description" content="Nezisková organizace s vizí tvorby rodového statku">
+
+    <!-- Analytics - Load after consent -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-J1EYDZ6G3W');
+        window.dataLayer = window.dataLayer || [];
     </script>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Přeskočit na obsah</a>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <img src="assets/logo.png" alt="Nech mě růst" class="logo">
             </div>
-            <ul class="nav-menu" id="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="navigation" aria-label="Hlavní menu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-link active" data-cs="Domů" data-en="Home">Domů</a>
                 </li>
@@ -56,10 +68,10 @@
                 <li class="nav-item">
                     <a href="obchod/index.html" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
                 </li>
-                
-                
+
+
                 <li class="nav-item language-switcher">
-                    <button id="lang-toggle" class="lang-btn">
+                    <button id="lang-toggle" class="lang-btn" aria-label="Změnit jazyk">
                         <span class="lang-text">EN</span>
                     </button>
                 </li>
@@ -90,7 +102,6 @@
             </div>
         </div>
         <div class="hero-image">
-            <!-- ZMĚNA: data-src na src pro okamžité načtení -->
             <img src="assets/hero-image.webp" alt="Lidé se zvířaty na louce" class="hero-bg" loading="lazy">
         </div>
     </section>
@@ -112,7 +123,6 @@
                     </p>
                 </div>
                 <div class="about-image">
-                     <!-- ZMĚNA: data-src na src -->
                     <img src="assets/about-image.webp" alt="Zvířata na louce" class="about-img" loading="lazy">
                 </div>
             </div>
@@ -126,28 +136,28 @@
             <div class="values-grid">
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart" aria-hidden="true"></i>
                     </div>
                     <h3 data-cs="Péče o zvířata" data-en="Animal Care">Péče o zvířata</h3>
                     <p data-cs="Poskytování bezpečného a láskyplného domova pro zvířata" data-en="Providing a safe and loving home for animals">Poskytování bezpečného a láskyplného domova pro zvířata</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-seedling"></i>
+                        <i class="fas fa-seedling" aria-hidden="true"></i>
                     </div>
                     <h3 data-cs="Soběstačnost" data-en="Self-sufficiency">Soběstačnost</h3>
                     <p data-cs="Aktivní usilování o udržitelný a soběstačný způsob života" data-en="Active pursuit of a sustainable and self-sufficient lifestyle">Aktivní usilování o udržitelný a soběstačný způsob života</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users" aria-hidden="true"></i>
                     </div>
                     <h3 data-cs="Komunita" data-en="Community">Komunita</h3>
                     <p data-cs="Budování silné a podporující komunity kolem naší Louky" data-en="Building a strong and supportive community around our Meadow">Budování silné a podporující komunity kolem naší Louky</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">
-                        <i class="fas fa-leaf"></i>
+                        <i class="fas fa-leaf" aria-hidden="true"></i>
                     </div>
                     <h3 data-cs="Soulad s přírodou" data-en="Harmony with Nature">Soulad s přírodou</h3>
                     <p data-cs="Láskyplné propojení s přírodou a cesta života v jejím rytmu" data-en="Loving connection with nature and living in its rhythm">Láskyplné propojení s přírodou a cesta života v jejím rytmu</p>
@@ -166,7 +176,7 @@
                 <a href="jak-se-zapojit.html" class="action-btn filled" data-cs="Jak se zapojit" data-en="How to Get Involved">
                     Jak se zapojit
                 </a>
-                
+
             </div>
         </div>
     </section>
@@ -175,7 +185,7 @@
         <div class="container">
             <div class="video-wrapper">
                 <div class="video-frame">
-                    <video controls poster="assets/video-poster.webp">
+                    <video controls preload="none" poster="assets/video-poster.webp">
                         <source src="assets/animals.mp4" type="video/mp4">
                         Váš prohlížeč nepodporuje přehrávání videa.
                     </video>
@@ -190,16 +200,16 @@
         <div class="container">
             <h2 class="section-title" data-cs="Sledujte nás" data-en="Follow Us">Sledujte nás</h2>
             <div class="social-media large">
-                <a href="https://www.instagram.com/nech_me_rust" class="social-link">
-                    <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/nech_me_rust" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                     <span>Instagram</span>
                 </a>
-                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link">
-                    <i class="fab fa-facebook"></i>
+                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
                     <span>Facebook</span>
                 </a>
-                <a href="mailto:info@nechmerust.org" class="social-link">
-                    <i class="fas fa-envelope"></i>
+                <a href="mailto:info@nechmerust.org" class="social-link" aria-label="Email">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <span>Email</span>
                 </a>
             </div>
@@ -209,16 +219,16 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            
 
-            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
-                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+
+            <p data-cs="© {year} Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© {year} Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © <span class="current-year"></span> Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
             </p>
         </div>
     </footer>
 
     <!-- GDPR Cookie Lišta -->
-    <div id="cookie-banner" class="cookie-banner hidden">
+    <div id="cookie-banner" class="cookie-banner hidden" role="dialog" aria-label="Souhlas s cookies">
         <div class="cookie-content">
             <p data-cs="Tento web používá soubory cookies k zajištění nejlepšího uživatelského zážitku. <a href='gdpr.html' class='cookie-link'>Více informací</a>" data-en="This website uses cookies to ensure the best user experience. <a href='gdpr.html' class='cookie-link'>More information</a>">
                 Tento web používá soubory cookies k zajištění nejlepšího uživatelského zážitku. <a href="gdpr.html" class="cookie-link">Více informací</a>
@@ -230,8 +240,13 @@
         </div>
     </div>
 
-    <!-- TOTO JE KLÍČOVÝ ŘÁDEK PRO FUNKČNOST MENU -->
     <script src="script.js"></script>
-    
+    <script>
+        // Initialize year dynamically
+        document.querySelectorAll('.current-year').forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+    </script>
+
 </body>
 </html>

@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Poznejte příběh a vizi projektu Nech mě růst a lidi, kteří za ním stojí. Naším posláním je vytvářet harmonický prostor pro zvířata, lidi a přírodu.">
     <title>Nech mě růst - O nás</title>
+    <link rel="canonical" href="https://nechmerust.org/o-nas.html">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="assets/logo.png">
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-J1EYDZ6G3W');
-</script>
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nechmerust.org/o-nas.html">
+    <meta property="og:title" content="O nás - Nech mě růst">
+    <meta property="og:description" content="Poznejte příběh a vizi projektu Nech mě růst a lidi, kteří za ním stojí.">
+    <meta property="og:image" content="https://nechmerust.org/assets/about-image.webp">
+
+    <!-- Analytics (load after consent) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
+</head>
 <body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Přeskočit na obsah</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -243,12 +249,29 @@
     <footer class="footer">
         <div class="container">
 
-            <p data-cs="© 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© 2025 Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
-                © 2025 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
+            <p data-cs="© {year} Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© {year} Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+                © <span class="current-year"></span> Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
             </p>
         </div>
     </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner hidden" role="dialog" aria-label="Souhlas s cookies">
+        <div class="cookie-content">
+            <p data-cs="Tento web používá soubory cookies. <a href='gdpr.html' class='cookie-link'>Více informací</a>" data-en="This website uses cookies. <a href='gdpr.html' class='cookie-link'>More information</a>">
+                Tento web používá soubory cookies. <a href="gdpr.html" class="cookie-link">Více informací</a>
+            </p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="btn btn-accept">Přijmout</button>
+                <button id="reject-cookies" class="btn btn-reject">Odmítnout</button>
+            </div>
+        </div>
+    </div>
+
 <script src="script.js"></script>
+<script>
+    document.querySelectorAll('.current-year').forEach(el => el.textContent = new Date().getFullYear());
+</script>
     
 </body>
 </html>
