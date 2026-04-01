@@ -4,7 +4,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || []
 document.addEventListener("DOMContentLoaded", () => {
   // Redirect if cart is empty
   if (cart.length === 0) {
-    window.location.href = "index.html"
+    window.location.href = "index"
     return
   }
 
@@ -89,7 +89,7 @@ async function submitOrder(event) {
 
       // Show success modal
       alert("Děkujeme za objednávku! Číslo vaší objednávky je: " + result.order_number)
-      window.location.href = "index.html"
+      window.location.href = "index"
     } else {
       alert("Chyba při vytváření objednávky: " + (result.error || "Neznámá chyba"))
       submitBtn.disabled = false

@@ -221,7 +221,7 @@ function showError(message) {
     <div class="error-message">
       <i class="fas fa-exclamation-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
       <p>${message}</p>
-      <a href="index.html">Zpět na obchod</a>
+      <a href="index">Zpět na obchod</a>
     </div>
   `;
 }

@@ -265,11 +265,11 @@ function goToCheckout() {
     alert("Váš košík je prázdný")
     return
   }
-  window.location.href = "checkout.html"
+  window.location.href = "checkout"
 }
 
 function openProductDetail(slug) {
-  window.location.href = `product-detail.html?product=${encodeURIComponent(slug)}`
+  window.location.href = `product-detail?product=${encodeURIComponent(slug)}`
 }
 
 function formatPrice(price) {

@@ -102,18 +102,20 @@ class WebsiteManager {
         });
 
         const titleMap = {
-            'index.html': { cs: 'Nech mě růst - Domů', en: 'Let Me Grow - Home' },
-            'zvireci-obyvatele.html': { cs: 'Nech mě růst - Zvířecí obyvatelé', en: 'Let Me Grow - Animal Residents' },
-            'virtualni-adopce.html': { cs: 'Nech mě růst - Virtuální adopce', en: 'Let Me Grow - Virtual Adoption' },
-            'udalosti.html': { cs: 'Nech mě růst - Události', en: 'Let Me Grow - Events' },
-            'kontakt.html': { cs: 'Nech mě růst - Kontakt', en: 'Let Me Grow - Contact' },
-            'prispet-kryptem.html': { cs: 'Nech mě růst - Přispět kryptem', en: 'Let Me Grow - Donate with Crypto' },
-            'o-nas.html': { cs: 'Nech mě růst - O nás' , en: 'Let Me Grow - About Us' },
-            'obchod/index.html': { cs: 'Nech mě růst - Obchod', en: 'Let Me Grow - Shop' },
-            'putovani-se-zviraty.html': { cs: 'Nech mě růst - Putování se zvířaty', en: 'Let Me Grow - Journey with Animals' }
+            'index': { cs: 'Nech mě růst - Domů', en: 'Let Me Grow - Home' },
+            'zvireci-obyvatele': { cs: 'Nech mě růst - Zvířecí obyvatelé', en: 'Let Me Grow - Animal Residents' },
+            'virtualni-adopce': { cs: 'Nech mě růst - Virtuální adopce', en: 'Let Me Grow - Virtual Adoption' },
+            'udalosti': { cs: 'Nech mě růst - Události', en: 'Let Me Grow - Events' },
+            'kontakt': { cs: 'Nech mě růst - Kontakt', en: 'Let Me Grow - Contact' },
+            'prispet-kryptem': { cs: 'Nech mě růst - Přispět kryptem', en: 'Let Me Grow - Donate with Crypto' },
+            'o-nas': { cs: 'Nech mě růst - O nás' , en: 'Let Me Grow - About Us' },
+            'obchod': { cs: 'Nech mě růst - Obchod', en: 'Let Me Grow - Shop' },
+            'putovani-se-zviraty': { cs: 'Nech mě růst - Putování se zvířaty', en: 'Let Me Grow - Journey with Animals' }
         };
 
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        // Get current page - strip .html for backwards compatibility
+        let currentPage = window.location.pathname.split('/').pop() || 'index';
+        currentPage = currentPage.replace(/\.html$/, '');
         if (titleMap[currentPage]) {
             document.title = titleMap[currentPage][lang];
         }
