@@ -2,16 +2,57 @@
 class WebsiteManager {
     constructor() {
         this.currentLang = localStorage.getItem('language') || 'cs';
+        this.gaInitialized = false;
         this.init();
     }
 
-    async init() {
+    init() {
         this.setupNavigation();
         this.setupLanguageSwitcher();
         this.setupAnimations();
         this.setupCookieBanner();
-        this.setupErrorHandling();
         this.applyLanguage(this.currentLang);
+        this.updateCurrentYear();
+        this.initGAConsent();
+    }
+
+    // Google Analytics GDPR Consent Management
+    initGAConsent() {
+        const consent = localStorage.getItem('cookieConsent');
+        if (consent === 'accepted' && !this.gaInitialized) {
+            this.loadGoogleAnalytics();
+        }
+    }
+
+    loadGoogleAnalytics() {
+        if (this.gaInitialized) return;
+
+        const gaId = 'G-J1EYDZ6G3W';
+
+        // Načíst gtag script
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        document.head.appendChild(script);
+
+        // Inicializace dataLayer
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId, {
+            'anonymize_ip': true,
+            'storage': 'none', // Neukládat cookies dokud nemáme souhlas
+            'ad_storage': 'denied',
+            'analytics_storage': 'granted'
+        });
+
+        this.gaInitialized = true;
+    }
+
+    updateCurrentYear() {
+        document.querySelectorAll('.current-year').forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
     }
 
     setupNavigation() {
@@ -19,81 +60,82 @@ class WebsiteManager {
         const navMenu = document.querySelector('.nav-menu');
 
         if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-                hamburger.classList.toggle('active');
+            // Remove any existing listeners by cloning
+            const newHamburger = hamburger.cloneNode(true);
+            hamburger.parentNode.replaceChild(newHamburger, hamburger);
+
+            newHamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isActive = newHamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
-                hamburger.setAttribute('aria-expanded', !isExpanded);
+                newHamburger.setAttribute('aria-expanded', isActive);
             });
 
-            const navLinks = document.querySelectorAll('.nav-link');
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    newHamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    newHamburger.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Close menu when clicking on a link
+            const navLinks = navMenu.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
+                    newHamburger.classList.remove('active');
                     navMenu.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
+                    newHamburger.setAttribute('aria-expanded', 'false');
                 });
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }
             });
         }
 
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
-        });
-
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (navbar) {
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                } else {
-                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-                }
-            }
         });
     }
 
     setupLanguageSwitcher() {
         const langToggle = document.getElementById('lang-toggle');
-        const langText = document.querySelector('.lang-text');
+        if (langToggle) {
+            const langText = langToggle.querySelector('.lang-text');
+            
+            const updateToggleText = (lang) => {
+                if (langText) langText.textContent = lang === 'cs' ? 'EN' : 'CZ';
+            };
 
-        if (langToggle && langText) {
-            langText.textContent = this.currentLang === 'cs' ? 'EN' : 'CZ';
+            updateToggleText(this.currentLang);
 
-            langToggle.addEventListener('click', () => {
+            langToggle.addEventListener('click', (e) => {
+                e.preventDefault();
                 this.currentLang = this.currentLang === 'cs' ? 'en' : 'cs';
-                this.applyLanguage(this.currentLang);
                 localStorage.setItem('language', this.currentLang);
-                langText.textContent = this.currentLang === 'cs' ? 'EN' : 'CZ';
+                this.applyLanguage(this.currentLang);
+                updateToggleText(this.currentLang);
             });
         }
     }
 
     applyLanguage(lang) {
         document.documentElement.lang = lang;
-
         const elements = document.querySelectorAll('[data-cs][data-en]');
         elements.forEach(element => {
             const text = element.getAttribute(`data-${lang}`);
             if (text) {
-                if (element.tagName === 'INPUT' && element.type === 'submit') {
+                if (element.tagName === 'INPUT' && (element.type === 'submit' || element.type === 'button')) {
                     element.value = text;
-                } else if (element.tagName === 'INPUT' && element.placeholder !== undefined) {
+                } else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                     element.placeholder = text;
                 } else {
                     element.innerHTML = text;
@@ -101,24 +143,47 @@ class WebsiteManager {
             }
         });
 
+        this.updatePageTitle(lang);
+    }
+
+    updatePageTitle(lang) {
         const titleMap = {
             'index': { cs: 'Nech mě růst - Domů', en: 'Let Me Grow - Home' },
+            'o-nas': { cs: 'Nech mě růst - O nás', en: 'Let Me Grow - About Us' },
+            'landing': { cs: 'Nech mě růst - Rozcestník', en: 'Let Me Grow - Navigation' },
+            'jak-se-zapojit': { cs: 'Nech mě růst - Jak se zapojit', en: 'Let Me Grow - Get Involved' },
+            'novinky': { cs: 'Nech mě růst - Novinky', en: 'Let Me Grow - News' },
             'zvireci-obyvatele': { cs: 'Nech mě růst - Zvířecí obyvatelé', en: 'Let Me Grow - Animal Residents' },
-            'virtualni-adopce': { cs: 'Nech mě růst - Virtuální adopce', en: 'Let Me Grow - Virtual Adoption' },
             'udalosti': { cs: 'Nech mě růst - Události', en: 'Let Me Grow - Events' },
             'kontakt': { cs: 'Nech mě růst - Kontakt', en: 'Let Me Grow - Contact' },
-            'prispet-kryptem': { cs: 'Nech mě růst - Přispět kryptem', en: 'Let Me Grow - Donate with Crypto' },
-            'o-nas': { cs: 'Nech mě růst - O nás' , en: 'Let Me Grow - About Us' },
-            'obchod': { cs: 'Nech mě růst - Obchod', en: 'Let Me Grow - Shop' },
-            'putovani-se-zviraty': { cs: 'Nech mě růst - Putování se zvířaty', en: 'Let Me Grow - Journey with Animals' }
+            'galerie': { cs: 'Nech mě růst - Galerie', en: 'Let Me Grow - Gallery' }
         };
 
-        // Get current page - strip .html for backwards compatibility
-        let currentPage = window.location.pathname.split('/').pop() || 'index';
-        currentPage = currentPage.replace(/\.html$/, '');
-        if (titleMap[currentPage]) {
-            document.title = titleMap[currentPage][lang];
+        let path = window.location.pathname;
+        let page = path.split('/').pop().replace('.html', '') || 'index';
+        
+        if (titleMap[page]) {
+            document.title = titleMap[page][lang];
         }
+    }
+
+    setupAnimations() {
+        if (!('IntersectionObserver' in window)) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        const animatedElements = document.querySelectorAll('.card, .value-card, .animal-card, .event-card, .team-card');
+        animatedElements.forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
     }
 
     setupCookieBanner() {
@@ -128,270 +193,34 @@ class WebsiteManager {
 
         if (!banner || !acceptBtn || !rejectBtn) return;
 
-        const cookieChoice = localStorage.getItem('cookieConsent');
-
-        if (!cookieChoice) {
-            setTimeout(() => {
-                banner.classList.remove('hidden');
-            }, 1000);
+        // Kontrola stávajícího souhlasu
+        const existingConsent = localStorage.getItem('cookieConsent');
+        if (!existingConsent) {
+            setTimeout(() => banner.classList.remove('hidden'), 1000);
         }
 
         const handleChoice = (choice) => {
             localStorage.setItem('cookieConsent', choice);
             banner.classList.add('hidden');
 
+            // Načíst GA pouze po souhlasu
             if (choice === 'accepted') {
-                this.loadAnalytics();
+                this.loadGoogleAnalytics();
             }
         };
 
         acceptBtn.addEventListener('click', () => handleChoice('accepted'));
         rejectBtn.addEventListener('click', () => handleChoice('rejected'));
     }
-
-    loadAnalytics() {
-        // Load Google Analytics only after consent
-        if (window.dataLayer) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W';
-            document.head.appendChild(script);
-
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-J1EYDZ6G3W');
-        }
-    }
-
-    setupErrorHandling() {
-        // Global error handler for uncaught errors
-        window.addEventListener('error', (e) => {
-            console.error('Global error:', e.error);
-        });
-
-        // Handle failed API calls
-        window.addEventListener('unhandledrejection', (e) => {
-            console.error('Unhandled promise rejection:', e.reason);
-        });
-    }
-
-    setupAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const animatedElements = document.querySelectorAll('.value-card, .animal-card, .event-card, .type-card, .contact-card, .step, .journey-info-card');
-        animatedElements.forEach(el => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroImages = document.querySelectorAll('.hero-bg');
-            heroImages.forEach(img => {
-                img.style.transform = `translateY(${scrolled * 0.5}px)`;
-            });
-        });
-
-        const cards = document.querySelectorAll('.value-card, .animal-card, .event-card, .type-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    }
 }
 
-// API Helper class with error handling and loading states
-class ApiClient {
-    constructor(baseUrl = '') {
-        this.baseUrl = baseUrl;
-    }
-
-    /**
-     * Show loading state for an element
-     */
-    showLoading(elementId, message = 'Načítání...') {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.dataset.originalContent = element.innerHTML;
-            element.innerHTML = `<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> ${message}</div>`;
-            element.disabled = true;
-        }
-    }
-
-    /**
-     * Hide loading state
-     */
-    hideLoading(elementId) {
-        const element = document.getElementById(elementId);
-        if (element && element.dataset.originalContent) {
-            element.innerHTML = element.dataset.originalContent;
-            element.disabled = false;
-            delete element.dataset.originalContent;
-        }
-    }
-
-    /**
-     * Show error message
-     */
-    showError(elementId, message) {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.innerHTML = `<div class="error-message"><i class="fas fa-exclamation-circle"></i> ${message}</div>`;
-        }
-    }
-
-    /**
-     * Make API request with error handling
-     */
-    async request(endpoint, options = {}) {
-        const url = this.baseUrl + endpoint;
-        const defaultOptions = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-
-        const config = { ...defaultOptions, ...options };
-
-        try {
-            const response = await fetch(url, config);
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || `HTTP ${response.status}`);
-            }
-
-            return data;
-        } catch (error) {
-            console.error('API Error:', error);
-            throw error;
-        }
-    }
-
-    /**
-     * GET request
-     */
-    async get(endpoint, params = {}) {
-        const queryString = new URLSearchParams(params).toString();
-        const url = queryString ? `${endpoint}?${queryString}` : endpoint;
-        return this.request(url, { method: 'GET' });
-    }
-
-    /**
-     * POST request
-     */
-    async post(endpoint, data) {
-        return this.request(endpoint, {
-            method: 'POST',
-            body: JSON.stringify(data),
-        });
-    }
-}
-
-// Form validation helper
-class FormValidator {
-    static email(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    static phone(phone) {
-        return /^[\d\s\+\-\(\)]{9,}$/.test(phone);
-    }
-
-    static required(value) {
-        return value && value.trim().length > 0;
-    }
-
-    static minLength(value, min) {
-        return value && value.length >= min;
-    }
-
-    /**
-     * Validate form and show inline errors
-     */
-    static validateForm(formId, rules) {
-        const form = document.getElementById(formId);
-        if (!form) return true;
-
-        let isValid = true;
-        const errors = {};
-
-        for (const [fieldName, fieldRules] of Object.entries(rules)) {
-            const field = form.querySelector(`[name="${fieldName}"]`);
-            if (!field) continue;
-
-            const value = field.value;
-            let error = null;
-
-            if (fieldRules.required && !this.required(value)) {
-                error = fieldRules.required;
-            } else if (fieldRules.email && !this.email(value)) {
-                error = fieldRules.email;
-            } else if (fieldRules.phone && !this.phone(value)) {
-                error = fieldRules.phone;
-            } else if (fieldRules.minLength && !this.minLength(value, fieldRules.minLength)) {
-                error = fieldRules.minLength;
-            }
-
-            if (error) {
-                isValid = false;
-                errors[fieldName] = error;
-                field.classList.add('error');
-                field.setAttribute('aria-invalid', 'true');
-            } else {
-                field.classList.remove('error');
-                field.removeAttribute('aria-invalid');
-            }
-        }
-
-        // Display errors
-        for (const [fieldName, errorMessage] of Object.entries(errors)) {
-            const field = form.querySelector(`[name="${fieldName}"]`);
-            let errorEl = field.parentElement.querySelector('.field-error');
-
-            if (!errorEl) {
-                errorEl = document.createElement('div');
-                errorEl.className = 'field-error';
-                field.parentElement.appendChild(errorEl);
-            }
-
-            errorEl.textContent = errorMessage;
-        }
-
-        // Clear errors for valid fields
-        const validFields = form.querySelectorAll('[name]:not(.error)');
-        validFields.forEach(field => {
-            const errorEl = field.parentElement.querySelector('.field-error');
-            if (errorEl) errorEl.remove();
-        });
-
-        return isValid;
-    }
-}
-
-// Initialize when DOM is loaded
+// Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
-    const websiteManager = new WebsiteManager();
+    window.websiteManager = new WebsiteManager();
 
-    // Lazy load images with IntersectionObserver
+    // Lazy load images
     if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
+        const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
@@ -403,71 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        lazyImages.forEach(img => imageObserver.observe(img));
+        document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
     }
-
-    // Add dynamic styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .hamburger.active .bar:nth-child(2) { opacity: 0; }
-        .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        .loading-spinner { color: #2d5a3d; padding: 20px; text-align: center; }
-        .error-message { color: #dc3545; padding: 10px; background: #f8d7da; border-radius: 4px; margin: 10px 0; }
-        .field-error { color: #dc3545; font-size: 0.875rem; margin-top: 4px; }
-        input.error, textarea.error { border-color: #dc3545 !important; }
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #2d5a3d;
-            color: white;
-            padding: 8px 16px;
-            z-index: 10000;
-            transition: top 0.3s;
-        }
-        .skip-link:focus {
-            top: 0;
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Initialize year dynamically in footer
-    document.querySelectorAll('.current-year').forEach(el => {
-        el.textContent = new Date().getFullYear();
-    });
 });
-
-// Service Worker registration with version control
-const SW_VERSION = '1.0.0';
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js', { scope: '/' })
-            .then(registration => {
-                console.log('SW registered:', registration.scope);
-
-                // Check for updates
-                registration.addEventListener('updatefound', () => {
-                    const newWorker = registration.installing;
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            console.log('New content available, refresh to update.');
-                        }
-                    });
-                });
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed:', registrationError);
-            });
-    });
-}
-
-// Export for use in other scripts
-window.WebsiteManager = WebsiteManager;
-window.ApiClient = ApiClient;
-window.FormValidator = FormValidator;

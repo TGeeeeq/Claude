@@ -6,11 +6,11 @@
     <meta name="description" content="Nech mě růst z.s. je azyl Louka pro zvířata ve druhé šanci. Pečujeme o více jak 100 zvířat již 6 let. Podpořte nás adopcí, brigádou nebo darem.">
     <title>Nech mě růst - Rozcestník</title>
     <link rel="canonical" href="https://nechmerust.org/landing">
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Open Graph -->
@@ -20,49 +20,56 @@
     <meta property="og:description" content="Azyl Louka – místo, kde zvířata dostávají druhou šanci. Každé zvíře má svůj příběh.">
     <meta property="og:image" content="https://nechmerust.org/assets/hero-image.webp">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nech mě růst - Azyl Louka">
-    <meta name="twitter:description" content="Azyl Louka – místo, kde zvířata dostávají druhou šanci.">
-
-    <!-- Google tag (gtag.js) - Load after consent -->
+    <!-- Analytics (load after consent) -->
     <script>
         window.dataLayer = window.dataLayer || [];
     </script>
 </head>
-<body>
-    <!-- Skip Link for Accessibility -->
+<body class="landing-page">
+    <!-- Skip Link -->
     <a href="#main-content" class="skip-link">Přeskočit na obsah</a>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="landing" class="nav-logo">
-                <img src="logo-landing.png" alt="Nech mě růst logo">
-            </a>
-            <ul class="nav-menu" id="nav-menu" role="navigation" aria-label="Hlavní menu">
+            <div class="nav-logo">
+                <a href="index"><img src="assets/logo.png" alt="Nech mě růst" class="logo"></a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item">
-                    <a href="#home" class="nav-link active" data-cs="Domů" data-en="Home">Domů</a>
+                    <a href="index" class="nav-link" data-cs="Domů" data-en="Home">Domů</a>
                 </li>
                 <li class="nav-item">
-                    <a href="jak-se-zapojit" class="nav-link" data-cs="Podpora" data-en="Support">Podpora</a>
+                    <a href="o-nas" class="nav-link" data-cs="O nás" data-en="About Us">O nás</a>
                 </li>
                 <li class="nav-item">
-                    <a href="virtualni-adopce" class="nav-link" data-cs="Adopce" data-en="Adoption">Adopce</a>
+                    <a href="jak-se-zapojit" class="nav-link" data-cs="Jak se zapojit" data-en="Get involved">Jak se zapojit</a>
+                </li>
+                <li class="nav-item">
+                    <a href="novinky" class="nav-link" data-cs="Novinky" data-en="News">Novinky</a>
+                </li>
+                <li class="nav-item">
+                    <a href="zvireci-obyvatele" class="nav-link" data-cs="Zvířecí obyvatelé" data-en="Animal Residents">Zvířecí obyvatelé</a>
                 </li>
                 <li class="nav-item">
                     <a href="udalosti" class="nav-link" data-cs="Události" data-en="Events">Události</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#shop" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
+                    <a href="kontakt" class="nav-link" data-cs="Kontakt" data-en="Contact">Kontakt</a>
                 </li>
                 <li class="nav-item">
-                    <button id="lang-toggle" class="lang-btn" aria-label="Změnit jazyk">
+                    <a href="galerie" class="nav-link" data-cs="Galerie" data-en="Gallery">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="obchod/index" class="nav-link" data-cs="Obchod" data-en="Shop">Obchod</a>
+                </li>
+                <li class="nav-item language-switcher">
+                    <button id="lang-toggle" class="lang-btn">
                         <span class="lang-text">EN</span>
                     </button>
                 </li>
             </ul>
-            <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav-menu">
+            <button class="hamburger" aria-label="Otevřít/zavřít menu" aria-expanded="false" aria-controls="nav-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -71,11 +78,15 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="page-hero landing-hero">
+        <div class="hero-image">
+            <img data-src="assets/hero-image.webp" alt="Azyl Louka" class="hero-bg" loading="lazy">
+        </div>
         <div class="container">
-
             <h1 data-cs="Vítejte v rozcestníku Nech mě růst" data-en="Welcome to Let Me Grow">Vítejte v rozcestníku Nech mě růst</h1>
-            <p data-cs="Azyl Louka – místo, kde zvířata dostávají druhou šanci. Každé zvíře má svůj příběh a my se snažíme zajistit jim co nejlepší život." data-en="Sanctuary Louka – a place where animals get a second chance. Every animal has a story, and we strive to give them the best life possible.">Azyl Louka – místo, kde zvířata dostávají druhou šanci. Každé zvíře má svůj příběh a my se snažíme zajistit jim co nejlepší život.</p>
+            <p data-cs="Azyl Louka – místo, kde zvířata dostávají druhou šanci. Každé zvíře má svůj příběh a my se snažíme zajistit jim co nejlepší život." data-en="Sanctuary Louka – a place where animals get a second chance. Every animal has a story, and we strive to give them the best life possible.">
+                Azyl Louka – místo, kde zvířata dostávají druhou šanci. Každé zvíře má svůj příběh a my se snažíme zajistit jim co nejlepší život.
+            </p>
 
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -99,55 +110,66 @@
     </section>
 
     <!-- Main Content -->
-    <section id="main-content" class="content">
+    <section id="main-content" class="content section-padding">
         <div class="container">
             <h2 class="section-title" data-cs="Možnosti podpory projektu" data-en="Project support options">Možnosti podpory projektu</h2>
 
             <div class="cards-grid">
                 <!-- Card 1: Support -->
-                <div class="card fade-in">
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-heart" aria-hidden="true"></i>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title" data-cs="Podpořit azyl" data-en="Support the Sanctuary">Podpořit azyl</h3>
-                        <p class="card-description" data-cs="Přispěvte na péči o zvířata finančním darem nebo nákupem v našem obchůdku." data-en="Contribute to animal care through financial donations or shopping in our store.">Přispěvte na péči o zvířata finančním darem nebo nákupem v našem obchůdku.</p>
+                        <p class="card-description" data-cs="Přispěvte na péči o zvířata finančním darem nebo nákupem v našem obchůdku." data-en="Contribute to animal care through financial donations or shopping in our store.">
+                            Přispěvte na péči o zvířata finančním darem nebo nákupem v našem obchůdku.
+                        </p>
                         <a href="jak-se-zapojit" class="card-btn" data-cs="Jak se zapojit" data-en="Get Involved">Jak se zapojit</a>
                     </div>
                 </div>
 
                 <!-- Card 2: Virtual Adoption -->
-                <div class="card fade-in">
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-paw" aria-hidden="true"></i>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title" data-cs="Virtuální adopce" data-en="Virtual Adoption">Virtuální adopce</h3>
-                        <p class="card-description" data-cs="Staňte se virtuálním rodičem jednoho z našich zvířecích obyvatel." data-en="Become a virtual parent of one of our animal residents.">Staňte se virtuálním rodičem jednoho z našich zvířecích obyvatel.</p>
+                        <p class="card-description" data-cs="Staňte se virtuálním rodičem jednoho z našich zvířecích obyvatel." data-en="Become a virtual parent of one of our animal residents.">
+                            Staňte se virtuálním rodičem jednoho z našich zvířecích obyvatel.
+                        </p>
                         <a href="virtualni-adopce" class="card-btn" data-cs="Adoptovat" data-en="Adopt Now">Adoptovat</a>
                     </div>
                 </div>
 
                 <!-- Card 3: Events -->
-                <div class="card fade-in">
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title" data-cs="Brigády a události" data-en="Volunteering & Events">Brigády a události</h3>
-                        <p class="card-description" data-cs="Zapojte se do našich brigád a setkejte se s ostatními příznivci projektu." data-en="Join our volunteer events and meet fellow supporters.">Zapojte se do našich brigád a setkejte se s ostatními příznivci projektu.</p>
+                        <p class="card-description" data-cs="Zapojte se do našich brigád a setkejte se s ostatními příznivci projektu." data-en="Join our volunteer events and meet fellow supporters.">
+                            Zapojte se do našich brigád a setkejte se s ostatními příznivci projektu.
+                        </p>
                         <a href="udalosti" class="card-btn" data-cs="Zobrazit události" data-en="View Events">Zobrazit události</a>
                     </div>
                 </div>
 
                 <!-- Card 4: Shop -->
-                <div class="card fade-in">
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-store" aria-hidden="true"></i>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Luční obchůdek <span class="card-badge" data-cs="Brzy" data-en="Soon">Brzy</span></h3>
-                        <p class="card-description" data-cs="Udělejte radost sobě nebo svým blízkým nákupem v našem dobročinném obchůdku." data-en="Make yourself or your loved ones happy by shopping in our charity shop.">Udělejte radost sobě nebo svým blízkým nákupem v našem dobročinném obchůdku.</p>
+                        <h3 class="card-title">
+                            <span data-cs="Luční obchůdek" data-en="Meadow Shop">Luční obchůdek</span>
+                            <span class="card-badge" data-cs="Brzy" data-en="Soon">Brzy</span>
+                        </h3>
+                        <p class="card-description" data-cs="Udělejte radost sobě nebo svým blízkým nákupem v našem dobročinném obchůdku." data-en="Make yourself or your loved ones happy by shopping in our charity shop.">
+                            Udělejte radost sobě nebo svým blízkým nákupem v našem dobročinném obchůdku.
+                        </p>
                         <a href="obchod/index" target="_blank" class="card-btn" data-cs="Navštívit obchod" data-en="Visit Shop">Navštívit obchod</a>
                     </div>
                 </div>
@@ -160,16 +182,16 @@
         <div class="container">
             <h2 class="section-title" data-cs="Sledujte nás" data-en="Follow Us">Sledujte nás</h2>
             <div class="social-media large">
-                <a href="https://www.instagram.com/nech_me_rust" class="social-link" aria-label="Instagram">
-                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                <a href="https://www.instagram.com/nech_me_rust" class="social-link">
+                    <i class="fab fa-instagram"></i>
                     <span>Instagram</span>
                 </a>
-                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link" aria-label="Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                <a href="https://www.facebook.com/share/1BDFbAxfFf/" class="social-link">
+                    <i class="fab fa-facebook"></i>
                     <span>Facebook</span>
                 </a>
-                <a href="mailto:info@nechmerust.org" class="social-link" aria-label="Email">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:info@nechmerust.org" class="social-link">
+                    <i class="fas fa-envelope"></i>
                     <span>Email</span>
                 </a>
             </div>
@@ -180,8 +202,7 @@
     <footer class="footer">
         <div class="container">
             <img src="logo-landing.png" alt="Logo Nech mě růst z.s." class="footer-logo">
-
-            <p data-cs="© {year} Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© {year} Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
+            <p data-cs="© 2026 Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům." data-en="© {year} Nech mě růst z.s. All rights reserved. • Written with love for nature and animals.">
                 © <span class="current-year"></span> Nech mě růst z.s. Všechna práva vyhrazena. • Napsáno s láskou k přírodě a zvířatům.
             </p>
         </div>
@@ -190,218 +211,16 @@
     <!-- Cookie Banner -->
     <div id="cookie-banner" class="cookie-banner hidden" role="dialog" aria-label="Souhlas s cookies">
         <div class="cookie-content">
-            <p data-cs="Tento web používá soubory cookies k zajištění nejlepšího uživatelského zážitku. <a href='gdpr.html' class='cookie-link'>Více informací</a>" data-en="This website uses cookies to ensure the best user experience. <a href='gdpr.html' class='cookie-link'>More information</a>">
-                Tento web používá soubory cookies k zajištění nejlepšího uživatelského zážitku. <a href="gdpr" class="cookie-link">Více informací</a>
+            <p data-cs="Tento web používá soubory cookies. <a href='gdpr.html' class='cookie-link'>Více informací</a>" data-en="This website uses cookies. <a href='gdpr.html' class='cookie-link'>More information</a>">
+                Tento web používá soubory cookies. <a href="gdpr" class="cookie-link">Více informací</a>
             </p>
             <div class="cookie-buttons">
-                <button id="accept-cookies" class="btn btn-accept" data-cs="Přijmout vše" data-en="Accept all">Přijmout vše</button>
+                <button id="accept-cookies" class="btn btn-accept" data-cs="Přijmout" data-en="Accept">Přijmout</button>
                 <button id="reject-cookies" class="btn btn-reject" data-cs="Odmítnout" data-en="Reject">Odmítnout</button>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Initialize year dynamically
-        document.querySelectorAll('.current-year').forEach(el => {
-            el.textContent = new Date().getFullYear();
-        });
-
-        // Initialize WebsiteManager
-        class WebsiteManager {
-            constructor() {
-                this.currentLang = localStorage.getItem('language') || 'cs';
-                this.init();
-            }
-
-            init() {
-                this.setupNavigation();
-                this.setupLanguageSwitcher();
-                this.setupAnimations();
-                this.setupCookieBanner();
-                this.applyLanguage(this.currentLang);
-            }
-
-            setupNavigation() {
-                const hamburger = document.getElementById('hamburger');
-                const navMenu = document.getElementById('nav-menu');
-                const navLinks = document.querySelectorAll('.nav-link');
-
-                if (hamburger && navMenu) {
-                    hamburger.addEventListener('click', () => {
-                        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-                        hamburger.classList.toggle('active');
-                        navMenu.classList.toggle('active');
-                        hamburger.setAttribute('aria-expanded', !isExpanded);
-                    });
-
-                    navLinks.forEach(link => {
-                        link.addEventListener('click', () => {
-                            hamburger.classList.remove('active');
-                            navMenu.classList.remove('active');
-                            hamburger.setAttribute('aria-expanded', 'false');
-                        });
-                    });
-
-                    document.addEventListener('click', (e) => {
-                        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                            hamburger.classList.remove('active');
-                            navMenu.classList.remove('active');
-                            hamburger.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
-
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const target = document.querySelector(this.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    });
-                });
-
-                window.addEventListener('scroll', () => {
-                    const navbar = document.querySelector('.navbar');
-                    if (navbar) {
-                        if (window.scrollY > 50) {
-                            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                        } else {
-                            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-                        }
-                    }
-                });
-            }
-
-            setupLanguageSwitcher() {
-                const langToggle = document.getElementById('lang-toggle');
-                const langText = document.querySelector('.lang-text');
-
-                if (langToggle && langText) {
-                    langText.textContent = this.currentLang === 'cs' ? 'EN' : 'CZ';
-
-                    langToggle.addEventListener('click', () => {
-                        this.currentLang = this.currentLang === 'cs' ? 'en' : 'cs';
-                        this.applyLanguage(this.currentLang);
-                        localStorage.setItem('language', this.currentLang);
-                        langText.textContent = this.currentLang === 'cs' ? 'EN' : 'CZ';
-                    });
-                }
-            }
-
-            applyLanguage(lang) {
-                document.documentElement.lang = lang;
-
-                const elements = document.querySelectorAll('[data-cs][data-en]');
-                elements.forEach(element => {
-                    const text = element.getAttribute(`data-${lang}`);
-                    if (text) {
-                        if (element.tagName === 'INPUT' && element.type === 'submit') {
-                            element.value = text;
-                        } else if (element.tagName === 'INPUT' && element.placeholder !== undefined) {
-                            element.placeholder = text;
-                        } else {
-                            element.innerHTML = text;
-                        }
-                    }
-                });
-            }
-
-            setupAnimations() {
-                const observerOptions = {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                };
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.animationDelay = '0s';
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, observerOptions);
-
-                const cards = document.querySelectorAll('.card');
-                cards.forEach((card, index) => {
-                    card.style.animationDelay = `${index * 0.1}s`;
-                    observer.observe(card);
-                });
-            }
-
-            setupCookieBanner() {
-                const banner = document.getElementById('cookie-banner');
-                const acceptBtn = document.getElementById('accept-cookies');
-                const rejectBtn = document.getElementById('reject-cookies');
-
-                if (!banner || !acceptBtn || !rejectBtn) return;
-
-                const cookieChoice = localStorage.getItem('cookieConsent');
-
-                if (!cookieChoice) {
-                    setTimeout(() => {
-                        banner.classList.remove('hidden');
-                    }, 1000);
-                }
-
-                const handleChoice = (choice) => {
-                    localStorage.setItem('cookieConsent', choice);
-                    banner.classList.add('hidden');
-
-                    if (choice === 'accepted') {
-                        this.loadAnalytics();
-                    }
-                };
-
-                acceptBtn.addEventListener('click', () => handleChoice('accepted'));
-                rejectBtn.addEventListener('click', () => handleChoice('rejected'));
-            }
-
-            loadAnalytics() {
-                // Load Google Analytics only after consent
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-J1EYDZ6G3W';
-                document.head.appendChild(script);
-
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-J1EYDZ6G3W');
-            }
-        }
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new WebsiteManager();
-
-            // Add dynamic styles
-            const style = document.createElement('style');
-            style.textContent = `
-                .skip-link {
-                    position: absolute;
-                    top: -40px;
-                    left: 0;
-                    background: #2d5a3d;
-                    color: white;
-                    padding: 8px 16px;
-                    z-index: 10000;
-                    transition: top 0.3s;
-                }
-                .skip-link:focus {
-                    top: 0;
-                }
-                .hamburger.active .bar:nth-child(2) { opacity: 0; }
-                .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-                .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-                .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-                .fade-in { opacity: 1; transform: translateY(0); }
-            `;
-            document.head.appendChild(style);
-        });
-    </script>
 </body>
 </html>
